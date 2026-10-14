@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Markdown from "@/components/Markdown";
 import { guardarChat, leerChat } from "@/lib/progreso";
 
-type Msg = { role: "user" | "model"; text: string };
+type Msg = { role: "user" | "model"; text: string; incompleta?: boolean };
 
 export default function Chat({
   nivel,
@@ -32,8 +32,8 @@ export default function Chat({
     listaRef.current?.scrollTo({ top: listaRef.current.scrollHeight, behavior: "smooth" });
   }, [msgs, cargando]);
 
-  async function enviar() {
-    const texto = input.trim();
+  async function enviar(continuacion?: string) {
+    const texto = (continuacion ?? input).trim();
     if (!texto || cargando) return;
     setError(null);
     const nuevos: Msg[] = [...msgs, { role: "user", text: texto }];
@@ -49,7 +49,7 @@ export default function Chat({
       });
       const data = await r.json();
       if (!r.ok) throw new Error(data?.error || "Error del servidor");
-      const conResp: Msg[] = [...nuevos, { role: "model", text: data.text }];
+      const conResp: Msg[] = [...nuevos, { role: "model", text: data.text, incompleta: data.incompleta === true }];
       setMsgs(conResp);
       guardarChat(nivel, conResp);
     } catch (e) {
@@ -87,6 +87,17 @@ export default function Chat({
           <div key={i} className={`msg ${m.role}`}>
             <div className="msg-body">
               {m.role === "model" ? <Markdown>{m.text}</Markdown> : m.text}
+              {m.role === "model" && m.incompleta && (
+                <div className="chat-continuacion">
+                  <p>La respuesta se corto por el limite de longitud.</p>
+                  {i === msgs.length - 1 && (
+                    <button type="button" className="ghost" disabled={cargando || !!input.trim()}
+                      onClick={() => enviar("Continua desde donde se corto tu ultima respuesta, sin repetir lo anterior.")}>
+                      Continuar respuesta
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -112,7 +123,7 @@ export default function Chat({
           maxLength={6000}
           disabled={cargando}
         />
-        <button onClick={enviar} disabled={cargando || !input.trim()}>
+        <button onClick={() => enviar()} disabled={cargando || !input.trim()}>
           Enviar
         </button>
       </div>

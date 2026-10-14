@@ -98,3 +98,30 @@ test('los cifrados revelan las palabras que acepta el servidor', async () => {
     assert.deepEqual(await (await validar(request({ nivel: level, codigo: code }))).json(), { ok: true });
   }
 });
+
+test('conserva respuestas parciales y avisa cuando Gemini alcanza el limite', async () => {
+  process.env.GEMINI_API_KEY = 'test-only';
+  for (const finishReason of ['MAX_TOKENS', 'CONTINUATION', 'STOP']) {
+    globalThis.fetch = (async () => Response.json({ candidates: [{ finishReason, content: { parts: [{ thought: true, text: 'interno' }, { text: 'Texto parcial' }] } }] })) as typeof fetch;
+    const response = await chat(request(conversacion));
+    const data = await response.json();
+    assert.equal(response.status, 200);
+    assert.equal(data.text, 'Texto parcial');
+    assert.equal(data.incompleta, finishReason === 'STOP' ? undefined : true);
+  }
+});
+
+test('continuar conserva mas de 6000 caracteres de la respuesta anterior', async () => {
+  process.env.GEMINI_API_KEY = 'test-only';
+  const previous = 'a'.repeat(12000) + 'ULTIMA FRASE';
+  globalThis.fetch = (async (_url, init) => {
+    const body = JSON.parse(init!.body as string);
+    assert.equal(body.generationConfig.maxOutputTokens, 8192);
+    assert.equal(body.contents[1].parts[0].text, previous);
+    return Response.json({ candidates: [{ finishReason: 'STOP', content: { parts: [{ text: 'Continuacion' }] } }] });
+  }) as typeof fetch;
+  const response = await chat(request({ nivel: 1, mensajes: [
+    { role: 'user', text: 'Explica' }, { role: 'model', text: previous }, { role: 'user', text: 'Continua' },
+  ] }));
+  assert.equal(response.status, 200);
+});

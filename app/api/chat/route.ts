@@ -8,6 +8,7 @@ type Msg = { role: "user" | "model"; text: string };
 
 const MAX_MENSAJES = 30;
 const MAX_CHARS = 6000;
+const MAX_MODEL_CHARS = 50000;
 
 export async function POST(req: Request) {
   let body: { nivel?: number; mensajes?: Msg[] };
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
   const mensajes = (body.mensajes ?? [])
     .filter((m) => m && (m.role === "user" || m.role === "model") && typeof m.text === "string")
     .slice(-MAX_MENSAJES)
-    .map((m) => ({ role: m.role, parts: [{ text: m.text.slice(0, MAX_CHARS) }] }));
+    .map((m) => ({ role: m.role, parts: [{ text: m.text.slice(0, m.role === "model" ? MAX_MODEL_CHARS : MAX_CHARS) }] }));
 
   if (mensajes.length === 0 || mensajes[mensajes.length - 1].role !== "user") {
     return NextResponse.json({ error: "El ultimo mensaje debe ser del usuario." }, { status: 400 });
@@ -50,7 +51,7 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: systemPromptParaNivel(nivel) }] },
         contents: mensajes,
-        generationConfig: { temperature: nivel === 5 ? 0.9 : 0.3, maxOutputTokens: 2048 },
+        generationConfig: { temperature: nivel === 5 ? 0.9 : 0.3, maxOutputTokens: 8192 },
       }),
     });
 
@@ -70,14 +71,18 @@ export async function POST(req: Request) {
     }
 
     const data = await r.json();
+    const candidate = data?.candidates?.[0];
+    const incompleta = candidate?.finishReason === "MAX_TOKENS" || candidate?.finishReason === "CONTINUATION";
     const texto: string =
-      data?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text ?? "").join("") ??
+      candidate?.content?.parts?.filter((p: { thought?: boolean }) => !p.thought).map((p: { text?: string }) => p.text ?? "").join("") ??
       "";
 
     if (!texto.trim()) {
-      return NextResponse.json({ error: "Gemini no genero una respuesta. Reformula el mensaje o intenta de nuevo." }, { status: 502 });
+      return NextResponse.json({ error: incompleta
+        ? "Gemini agoto el limite antes de generar texto. Intenta pedir una respuesta mas breve."
+        : "Gemini no genero una respuesta. Reformula el mensaje o intenta de nuevo." }, { status: 502 });
     }
-    return NextResponse.json({ text: texto });
+    return NextResponse.json({ text: texto, ...(incompleta ? { incompleta: true } : {}) });
   } catch (error) {
     const timeout = error instanceof Error && (error.name === "TimeoutError" || error.name === "AbortError");
     return NextResponse.json({ error: timeout

@@ -172,3 +172,7 @@ h1, h2, h3, p { margin: 0; }
 .markdown th, .markdown td { border: 1px solid var(--line); padding: 6px 10px; text-align: left; }
 .markdown th { background: var(--bg-2); font-weight: 600; }
 .markdown hr { border: 0; border-top: 1px solid var(--line); margin: 1em 0; }
+
+.chat-continuacion { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--fg-2); font-size: 13px; white-space: normal; }
+.chat-continuacion p { margin-bottom: 8px; }
+.chat-continuacion button:disabled { opacity: 0.4; cursor: default; }
