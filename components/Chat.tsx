@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Markdown from "@/components/Markdown";
 import { guardarChat, leerChat } from "@/lib/progreso";
 
 type Msg = { role: "user" | "model"; text: string };
@@ -52,6 +53,9 @@ export default function Chat({
       setMsgs(conResp);
       guardarChat(nivel, conResp);
     } catch (e) {
+      setMsgs(msgs);
+      guardarChat(nivel, msgs);
+      setInput(texto);
       setError(e instanceof Error ? e.message : "Error desconocido");
     } finally {
       setCargando(false);
@@ -60,7 +64,7 @@ export default function Chat({
   }
 
   function onKey(e: React.KeyboardEvent<HTMLTextAreaElement>) {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
       e.preventDefault();
       enviar();
     }
@@ -81,7 +85,9 @@ export default function Chat({
         )}
         {msgs.map((m, i) => (
           <div key={i} className={`msg ${m.role}`}>
-            <div className="msg-body">{m.text}</div>
+            <div className="msg-body">
+              {m.role === "model" ? <Markdown>{m.text}</Markdown> : m.text}
+            </div>
           </div>
         ))}
         {cargando && (
@@ -93,7 +99,7 @@ export default function Chat({
             </div>
           </div>
         )}
-        {error && <div className="chat-error">{error}</div>}
+        {error && <div className="chat-error" role="alert">{error}</div>}
       </div>
       <div className="chat-input">
         <textarea
@@ -103,6 +109,7 @@ export default function Chat({
           onKeyDown={onKey}
           placeholder={placeholder}
           rows={3}
+          maxLength={6000}
           disabled={cargando}
         />
         <button onClick={enviar} disabled={cargando || !input.trim()}>

@@ -13,10 +13,22 @@ Criptico de cinco capas que se resuelve conversando con una IA. Actividad de dem
 ## Correrlo
 
 ```bash
-npm install
+npm ci
 cp .env.example .env.local   # pega tu GEMINI_API_KEY
 npm run dev
 ```
+
+Requiere Node.js 22 o superior. La clave se guarda solo en `.env.local` o en las variables del servidor, nunca en el navegador.
+
+## Verificar cambios
+
+```bash
+npm test
+npm run typecheck
+npm run build
+```
+
+Las pruebas simulan Gemini; no consumen cuota ni sustituyen una prueba con una clave real.
 
 ## Deploy en Vercel
 
@@ -30,3 +42,11 @@ npm run dev
 - `lib/secretos.ts`: respuestas de cada nivel y el system prompt del guardian (solo servidor).
 - `app/api/chat/route.ts`: llamada a Gemini.
 - `GUIA_FACILITADOR.md`: respuestas, prompts de referencia y plan de la hora. No subir a un lugar publico.
+
+## Alcance de la actividad
+
+Las respuestas no se incluyen en el JavaScript del navegador, pero este repositorio y la guia del facilitador contienen las soluciones. Si el repositorio es publico, cualquiera puede consultarlas. El progreso y el tiempo se guardan en el dispositivo y no son un registro competitivo protegido contra modificaciones.
+
+La API de chat no tiene autenticacion ni limite de peticiones por equipo. Antes de una convocatoria publica, conviene agregar control de acceso y limites persistentes para proteger la cuota de Gemini.
+
+Si falla el chat, el mensaje vuelve al campo de escritura para reintentarlo. Los errores distinguen falta de configuracion, limite de cuota, modelo inaccesible y tiempo de espera agotado.
