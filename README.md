@@ -21,7 +21,7 @@ npm run dev
 ## Deploy en Vercel
 
 1. Importa este repo en Vercel (framework: Next.js, sin configuracion extra).
-2. En Settings > Environment Variables agrega `GEMINI_API_KEY` (y opcionalmente `GEMINI_MODEL`, por defecto `gemini-2.5-flash`).
+2. En Settings > Environment Variables agrega `GEMINI_API_KEY` (y opcionalmente `GEMINI_MODEL`, por defecto `gemini-3.8-flash`).
 3. Deploy.
 
 ## Donde cambiar cosas
