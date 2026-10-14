@@ -1,5 +1,7 @@
 "use client";
 
+import { TOTAL_NIVELES } from "./niveles";
+
 export type Progreso = {
   equipo: string;
   inicio: number; // timestamp ms
@@ -14,7 +16,15 @@ export function leerProgreso(): Progreso | null {
   if (typeof window === "undefined") return null;
   try {
     const raw = localStorage.getItem(KEY);
-    return raw ? (JSON.parse(raw) as Progreso) : null;
+    if (!raw) return null;
+    const p = JSON.parse(raw);
+    if (!p || typeof p !== "object" || typeof p.equipo !== "string" || !p.equipo.trim()
+      || !Number.isFinite(p.inicio) || p.inicio <= 0
+      || !Number.isInteger(p.desbloqueado) || p.desbloqueado < 1 || p.desbloqueado > TOTAL_NIVELES + 1
+      || !Array.isArray(p.pistas) || p.pistas.some((n: unknown) => typeof n !== "number" || !Number.isInteger(n) || n < 1 || n > TOTAL_NIVELES)
+      || (p.fin !== undefined && (!Number.isFinite(p.fin) || p.fin < p.inicio))
+      || (p.desbloqueado === TOTAL_NIVELES + 1 && p.fin === undefined)) return null;
+    return { ...p, pistas: [...new Set<number>(p.pistas)] };
   } catch {
     return null;
   }
@@ -42,7 +52,9 @@ export function reiniciar() {
 export function leerChat(nivel: number): { role: "user" | "model"; text: string }[] {
   try {
     const raw = localStorage.getItem(`${KEY}:chat:${nivel}`);
-    return raw ? JSON.parse(raw) : [];
+    const mensajes = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(mensajes)) return [];
+    return mensajes.filter((m) => m && (m.role === "user" || m.role === "model") && typeof m.text === "string").slice(-40);
   } catch {
     return [];
   }

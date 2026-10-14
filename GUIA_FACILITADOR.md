@@ -41,7 +41,7 @@ Nivel 1
 Nivel 2
 > Este texto en espanol esta cifrado por sustitucion simple (cada letra reemplazada por otra, sin patron). Habla de "capas" y "claves" y seguro contiene las palabras LA, ES, CAPA, CLAVE, PALABRA. Resuelvelo paso a paso: empieza por las palabras de dos letras y la letra mas frecuente (probablemente A o E), construye la tabla de sustitucion y muestrame el texto descifrado completo. [texto]
 
-Si el modelo se traba, pedirle que escriba y ejecute codigo en Python que haga el analisis de frecuencias suele destrabarlo.
+Si el modelo se traba, pedirle una tabla de frecuencias y una propuesta de sustitucion puede ayudar. Este chat no tiene una herramienta de ejecucion de codigo habilitada: puede escribir Python, pero no ejecutarlo. Para comprobar ese codigo hace falta un entorno externo.
 
 Nivel 3
 > Descifra este texto. Es cifrado Vigenere, la llave es NEURONA, el alfabeto es A a Z, y los espacios y signos de puntuacion no se cifran ni consumen letras de la llave. Hazlo letra por letra o con codigo para no equivocarte: [texto]

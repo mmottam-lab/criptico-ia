@@ -9,8 +9,11 @@ import { guardarProgreso, leerProgreso } from "@/lib/progreso";
 
 export default function PaginaNivel() {
   const params = useParams<{ n: string }>();
+  return <ContenidoNivel key={params.n} n={Number(params.n)} />;
+}
+
+function ContenidoNivel({ n }: { n: number }) {
   const router = useRouter();
-  const n = Number(params.n);
   const nivel = getNivel(n);
 
   const [listo, setListo] = useState(false);
@@ -18,6 +21,7 @@ export default function PaginaNivel() {
   const [estado, setEstado] = useState<"idle" | "checando" | "mal" | "bien">("idle");
   const [pistaVisible, setPistaVisible] = useState(false);
   const [copiado, setCopiado] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const p = leerProgreso();
@@ -41,8 +45,9 @@ export default function PaginaNivel() {
 
   async function validar(e: React.FormEvent) {
     e.preventDefault();
-    if (!codigo.trim() || estado === "checando") return;
+    if (!codigo.trim() || (estado === "checando" || estado === "bien")) return;
     setEstado("checando");
+    setError(null);
     try {
       const r = await fetch("/api/validate", {
         method: "POST",
@@ -50,12 +55,13 @@ export default function PaginaNivel() {
         body: JSON.stringify({ nivel: n, codigo }),
       });
       const data = await r.json();
+      if (!r.ok) throw new Error(data.error || "No se pudo verificar la respuesta. Intenta de nuevo.");
       if (data.ok) {
         setEstado("bien");
         const p = leerProgreso();
         if (p) {
           p.desbloqueado = Math.max(p.desbloqueado, n + 1);
-          if (n === TOTAL_NIVELES) p.fin = Date.now();
+          if (n === TOTAL_NIVELES && !p.fin) p.fin = Date.now();
           guardarProgreso(p);
         }
         setTimeout(() => router.push(n === TOTAL_NIVELES ? "/final" : `/nivel/${n + 1}`), 900);
@@ -63,9 +69,9 @@ export default function PaginaNivel() {
         setEstado("mal");
         setTimeout(() => setEstado("idle"), 1200);
       }
-    } catch {
-      setEstado("mal");
-      setTimeout(() => setEstado("idle"), 1200);
+    } catch (error) {
+      setEstado("idle");
+      setError(error instanceof Error ? error.message : "No se pudo verificar la respuesta. Intenta de nuevo.");
     }
   }
 
@@ -140,10 +146,11 @@ export default function PaginaNivel() {
                 autoComplete="off"
                 autoCapitalize="characters"
               />
-              <button type="submit" disabled={!codigo.trim() || estado === "checando"}>
+              <button type="submit" disabled={!codigo.trim() || estado === "checando" || estado === "bien"}>
                 {estado === "bien" ? "Abierta" : estado === "mal" ? "No" : "Abrir"}
               </button>
             </div>
+            {error && <p role="alert">{error}</p>}
           </form>
         </section>
 

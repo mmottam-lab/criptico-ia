@@ -10,9 +10,12 @@ export async function POST(req: Request) {
   } catch {
     return NextResponse.json({ ok: false, error: "JSON invalido." }, { status: 400 });
   }
+  if (!body || typeof body !== "object" || Array.isArray(body) || typeof body.codigo !== "string") {
+    return NextResponse.json({ ok: false, error: "Solicitud invalida." }, { status: 400 });
+  }
   const nivel = Number(body.nivel);
   const esperado = RESPUESTAS[nivel];
-  if (!esperado) {
+  if (!Number.isInteger(nivel) || !esperado) {
     return NextResponse.json({ ok: false, error: "Nivel invalido." }, { status: 400 });
   }
   const ok = normaliza(String(body.codigo ?? "")) === esperado;
