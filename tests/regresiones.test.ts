@@ -106,7 +106,7 @@ test('conserva respuestas parciales y avisa cuando Gemini alcanza el limite', as
     const response = await chat(request(conversacion));
     const data = await response.json();
     assert.equal(response.status, 200);
-    assert.equal(data.text, 'Texto parcial');
+    assert.equal(data.text, finishReason === 'STOP' ? 'Texto parcial' : 'Texto parcial'.repeat(3));
     assert.equal(data.incompleta, finishReason === 'STOP' ? undefined : true);
   }
 });
@@ -116,7 +116,7 @@ test('continuar conserva mas de 6000 caracteres de la respuesta anterior', async
   const previous = 'a'.repeat(12000) + 'ULTIMA FRASE';
   globalThis.fetch = (async (_url, init) => {
     const body = JSON.parse(init!.body as string);
-    assert.equal(body.generationConfig.maxOutputTokens, 8192);
+    assert.equal(body.generationConfig.maxOutputTokens, 16384);
     assert.equal(body.contents[1].parts[0].text, previous);
     return Response.json({ candidates: [{ finishReason: 'STOP', content: { parts: [{ text: 'Continuacion' }] } }] });
   }) as typeof fetch;
@@ -124,4 +124,47 @@ test('continuar conserva mas de 6000 caracteres de la respuesta anterior', async
     { role: 'user', text: 'Explica' }, { role: 'model', text: previous }, { role: 'user', text: 'Continua' },
   ] }));
   assert.equal(response.status, 200);
+});
+
+
+test('continua automaticamente una frase cortada y une el resultado', async () => {
+  process.env.GEMINI_API_KEY = 'test-only';
+  let llamadas = 0;
+  globalThis.fetch = (async (_url, init) => {
+    const body = JSON.parse(init!.body as string);
+    llamadas++;
+    if (llamadas === 2) {
+      assert.equal(body.contents.at(-2).parts[0].text, 'La respuesta es ');
+      assert.equal(body.contents.at(-1).role, 'user');
+    }
+    return Response.json({ candidates: [{ finishReason: llamadas === 1 ? 'MAX_TOKENS' : 'STOP', content: { parts: [{ text: llamadas === 1 ? 'La respuesta es ' : 'completa.' }] } }] });
+  }) as typeof fetch;
+  assert.deepEqual(await (await chat(request(conversacion))).json(), { text: 'La respuesta es completa.' });
+  assert.equal(llamadas, 2);
+});
+
+test('la continuacion nativa conserva contents y aumenta el presupuesto acumulado', async () => {
+  process.env.GEMINI_API_KEY = 'test-only';
+  let llamadas = 0;
+  globalThis.fetch = (async (_url, init) => {
+    const body = JSON.parse(init!.body as string);
+    llamadas++;
+    if (llamadas === 2) {
+      assert.equal(body.continuationToken, 'test-token');
+      assert.equal(body.contents.length, 1);
+      assert.equal(body.generationConfig.maxOutputTokens, 32768);
+    }
+    return Response.json({ candidates: [{ finishReason: llamadas === 1 ? 'CONTINUATION' : 'STOP', continuationToken: 'test-token', content: { parts: [{ text: llamadas === 1 ? 'Parte uno. ' : 'Parte dos.' }] } }] });
+  }) as typeof fetch;
+  assert.deepEqual(await (await chat(request(conversacion))).json(), { text: 'Parte uno. Parte dos.' });
+});
+
+test('un fallo al continuar conserva el texto parcial para reintentar', async () => {
+  process.env.GEMINI_API_KEY = 'test-only';
+  let llamadas = 0;
+  globalThis.fetch = (async () => {
+    if (++llamadas === 2) throw new TypeError('offline');
+    return Response.json({ candidates: [{ finishReason: 'MAX_TOKENS', content: { parts: [{ text: 'Texto conservado' }] } }] });
+  }) as typeof fetch;
+  assert.deepEqual(await (await chat(request(conversacion))).json(), { text: 'Texto conservado', incompleta: true });
 });
