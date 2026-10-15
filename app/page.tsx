@@ -37,12 +37,12 @@ export default function Inicio() {
         </h1>
         <p className="lead">
           Interceptamos un mensaje sellado hace diez anos por la primera generacion de la licenciatura.
-          Esta protegido por cinco capas. Nadie lo resuelve a mano. Tienen una IA y el reloj corre.
+          Esta protegido por cinco capas. Tienen una IA que los guia con preguntas y pistas. Ustedes descubren la respuesta y el reloj corre.
         </p>
 
         <ul className="reglas">
           <li>Cada capa resuelta entrega la palabra que abre la siguiente.</li>
-          <li>La IA de cada capa solo sabe lo que ustedes le cuenten. Lo que importa es como le preguntan.</li>
+          <li>La IA los ayuda a pensar: compartan sus intentos, propongan ideas y comprueben sus respuestas.</li>
           <li>Pueden pedir una pista por capa. Cada pista suma 2 minutos al tiempo final.</li>
           <li>La ultima capa no se descifra. Se conversa.</li>
         </ul>

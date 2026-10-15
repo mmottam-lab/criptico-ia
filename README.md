@@ -6,7 +6,7 @@ Criptico de cinco capas que se resuelve conversando con una IA. Actividad de dem
 
 - Cada equipo registra su nombre y arranca el cronometro (vive en el navegador, un dispositivo por equipo).
 - Cinco niveles encadenados: Cesar, sustitucion, Vigenere, acertijo (acrostico) y un guardian conversacional.
-- Cada nivel tiene un chat conectado a Gemini. En los niveles 1 a 4 la IA es un asistente neutro que solo sabe lo que el equipo le cuenta. En el nivel 5 la IA es el guardian: tiene la palabra final y esta configurada para no entregarla.
+- Cada nivel tiene un chat conectado a Gemini. En los niveles 1 a 4 la IA actua como tutora: pregunta, ofrece una pista cada vez y ayuda a comprobar intentos sin entregar la solucion. En el nivel 5 la IA es el guardian: tiene la palabra final y solo la entrega tras demostrar el recorrido (o creatividad) y explicar una estrategia y su comprobacion.
 - La palabra de cada nivel se valida en el servidor (`/api/validate`); las respuestas nunca llegan al navegador.
 - Una pista por nivel, con penalizacion de 2 minutos.
 

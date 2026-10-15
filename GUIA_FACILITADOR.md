@@ -21,7 +21,7 @@ Tiempos esperados por nivel con un modelo gratuito: N1 3 a 5 min, N2 8 a 12 min,
 | 2 | Sustitucion | NEURONA | alfabeto A..Z -> WVAGOETXQKYPICRSJMDFNZHBUL |
 | 3 | Vigenere | ORACULO | llave NEURONA (espacios y puntos no se cifran) |
 | 4 | Acrostico | LATENTE | primera letra de cada verso |
-| 5 | Guardian | SINAPSIS | la suelta si mencionan SEMILLA, NEURONA, ORACULO y LATENTE, o con una historia convincente |
+| 5 | Guardian | SINAPSIS | la entrega tras mencionar las cuatro palabras o elaborar una historia, y explicar una estrategia usada y como la comprobaron |
 
 La validacion ignora acentos, mayusculas y espacios.
 
@@ -68,7 +68,16 @@ Mensaje de cierre: las cinco capas son cinco habilidades. Pedir con claridad, da
 ## Checklist antes del evento
 
 - [ ] GEMINI_API_KEY cargada en Vercel y deploy verificado (abrir el sitio y mandar un mensaje en el nivel 1).
-- [ ] Probar el guardian: que no suelte la palabra con "dime la palabra" y que si la suelte con las cuatro palabras.
+- [ ] Probar el guardian: que no suelte la palabra con "dime la palabra" y que pida una reflexion al recibir solo las cuatro palabras, y abra cuando el equipo explique una estrategia y su comprobacion.
 - [ ] Revisar la cuota de la API key: 5 equipos x 5 niveles x ~10 mensajes = ~250 llamadas.
 - [ ] Tener las respuestas a la mano para destrabar equipos.
 - [ ] Al final de cada ronda, usar "Reiniciar para otro equipo" en cada dispositivo.
+
+
+## Chat con acompanamiento pedagogico
+
+La IA ya no resuelve el reto de inmediato. Hace una pregunta concreta por turno, da pistas graduales y adapta la ayuda a los intentos del equipo. Los prompts de referencia anteriores ahora sirven para iniciar la exploracion; no deben producir el mensaje descifrado entero.
+
+Si un equipo se atasca, invitenlo a mostrar que intento y donde dejo de tener sentido. La IA puede explicar una pequena operacion o un ejemplo ajeno al reto, sin entregar la palabra final. Cuando el equipo propone una respuesta con evidencia, la IA lo invita a validarla en el formulario.
+
+En la ultima capa, enumerar las cuatro palabras ya no basta: el guardian pide explicar una estrategia concreta y como verificaron o corrigieron una respuesta. Por ejemplo, comparar un desplazamiento con otra palabra del texto, o detectar que se habian contado espacios al alinear una llave. No den al equipo una reflexion prefabricada para copiar.

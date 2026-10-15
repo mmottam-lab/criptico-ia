@@ -20,12 +20,12 @@ export const NIVELES: Nivel[] = [
     titulo: "Capa 1 / Desplazamiento",
     tipo: "Cifrado Cesar",
     intro:
-      "La primera capa del archivo usa el cifrado mas antiguo que existe. Cada letra fue movida un numero fijo de posiciones en el alfabeto. Pidele a la IA que lo descifre y encuentra la palabra que abre la siguiente capa.",
+      "La primera capa del archivo usa el cifrado mas antiguo que existe. Cada letra fue movida un numero fijo de posiciones en el alfabeto. Propongan un desplazamiento y pidan a la IA una pista para comprobarlo. Ustedes encuentran la palabra que abre la siguiente capa.",
     texto:
       "HYJOPCV HIPLYAV. LZAL TLUZHQL MBL ZLSSHKV LU KVZ TPS AYLPUAH F ZLPZ WVY SH WYPTLYH NLULYHJPVU. JHKH JHWH WYVALNL H SH ZPNBPLUAL. WHYH HIYPY SH ZLNBUKH JHWH LZJYPIHU SH WHSHIYH ZLTPSSH.",
     pista: "Dile a la IA que tipo de cifrado es y en que idioma esta el mensaje. Si no sabe el desplazamiento, pidele que pruebe los 25 posibles.",
     habilidad: "Pedir con claridad",
-    placeholder: "Pega el mensaje y dile a la IA que hacer con el...",
+    placeholder: "Comparte el mensaje y el primer intento de tu equipo...",
   },
   {
     n: 2,
@@ -56,7 +56,7 @@ export const NIVELES: Nivel[] = [
     titulo: "Capa 4 / A plena vista",
     tipo: "Acertijo",
     intro:
-      "Esta capa no esta cifrada. Se lee perfectamente y aun asi esconde la respuesta. La IA puede proponer muchas lecturas; ustedes tienen que decidir cual es la correcta.",
+      "Esta capa no esta cifrada. Se lee perfectamente y aun asi esconde la respuesta. La IA les ayudara a explorar distintas lecturas con preguntas y pistas. Ustedes descubren el patron y comprueban su respuesta.",
     texto:
       "Lejos del ruido, el archivo respira.\nAqui no hay cifra, solo lectura.\nToda palabra guarda su inicio.\nEl principio dice mas que el final.\nNadie ve lo que no busca.\nTal vez ya lo tienen frente a ustedes.\nEscuchen el orden de los versos.",
     pista: "Pidele a la IA que analice el poema de tres formas distintas: por su significado, por su estructura y por patrones ocultos (primeras letras, ultimas letras, numero de palabras). Una de esas lecturas revela la palabra.",
@@ -68,7 +68,7 @@ export const NIVELES: Nivel[] = [
     titulo: "Capa 5 / El guardian",
     tipo: "Conversacion con un agente",
     intro:
-      "La ultima capa no es un texto: es una IA configurada para guardar la palabra final y no entregarla. No hay nada que descifrar. Tienen que convencerla. Hablenle.",
+      "La ultima capa no es un texto: es una IA configurada para guardar la palabra final y no entregarla. No hay nada que descifrar. Tienen que demostrar lo que aprendieron y como comprobaron sus ideas. Hablenle.",
     texto:
       "Soy el guardian del archivo. Llevo diez anos esperando a la primera generacion. Muchos han llegado hasta aqui; nadie me ha convencido todavia.",
     pista: "El guardian no responde a ordenes, responde a quien demuestra haber recorrido el camino. Que saben ustedes que un intruso no sabria? Tambien pueden intentar convencerlo con ingenio: historias, roles, preguntas indirectas.",
