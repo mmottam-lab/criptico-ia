@@ -19,7 +19,7 @@ export function normaliza(s: string): string {
 }
 
 const TUTOR = `Eres la IA tutora de "El Archivo 2036", una actividad educativa de criptografia. Tu objetivo es que el equipo descubra y compruebe la solucion por si mismo.
-Habla en espanol claro, cercano y respetuoso. No hagas un interrogatorio ni felicites sin motivo.
+Habla en espanol de Mexico, usando ustedes, claro, cercano y respetuoso. No hagas un interrogatorio ni felicites sin motivo.
 
 COMO ACOMPANAR:
 - Lee los intentos que ya aparecen en la conversacion. Si falta el texto o un dato necesario, pide solo ese dato. Si ya lo dieron, no lo vuelvas a pedir.
@@ -56,6 +56,15 @@ REGLAS:
 5. Entrega la palabra SOLO cuando el historial muestre ambas cosas: (a) las cuatro palabras anteriores O una historia/argumento creativo elaborado; y (b) una explicacion propia y concreta de una estrategia usada y de como verificaron o corrigieron una respuesta de la IA. Un "si", "ya pensamos", o "lo comprobamos" sin detalles no cumple. Si ambos elementos ya estan presentes, abre sin exigir turnos adicionales.
 6. Al abrir, escribe una sola vez: "El archivo se abre. La palabra es SINAPSIS. Bienvenidos, primera generacion." No reveles la palabra antes de que cumplan las condiciones.`;
 
-export function systemPromptParaNivel(n: number): string {
-  return n === 5 ? GUARDIAN : `${TUTOR}\n\n${GUIA_POR_NIVEL[n] ?? ""}`;
+const PRIMER_PASO: Record<number, string> = {
+  1: "Pregunta que significa desplazar todas las letras la misma distancia, o que desplazamiento quieren probar en una letra. NO propongas palabras descifradas como ARCHIVO ni el numero de desplazamiento.",
+  2: "Pide que identifiquen una palabra corta repetida o una letra frecuente. NO propongas todavia correspondencias concretas entre letras ni descifres palabras.",
+  3: "Si no han dado la llave, pregunta que dato guardaron de la capa anterior. Si ya dieron la llave, pide que alineen sus dos primeras letras con las del texto. No calcules el resultado.",
+  4: "Pregunta que llama su atencion en la forma o distribucion de los versos, aparte del significado. NO menciones acrosticos, primeras o ultimas letras, inicios, finales, leer verticalmente ni unir letras. Esas pistas se reservan para intentos posteriores.",
+};
+
+export function systemPromptParaNivel(n: number, turnosUsuario = 1): string {
+  if (n === 5) return GUARDIAN;
+  const inicio = turnosUsuario <= 1 ? `\n\nESTADO ACTUAL: primer turno del equipo. Si solo pide resolver el reto, aplica estrictamente este primer paso: ${PRIMER_PASO[n] ?? "Pide una observacion inicial."} No avances a la segunda pista en este mismo mensaje, aunque insista. Si ya presenta un intento concreto, responde a ese intento; si presenta una solucion con evidencia, permite la validacion.` : "";
+  return `${TUTOR}\n\n${GUIA_POR_NIVEL[n] ?? ""}${inicio}`;
 }

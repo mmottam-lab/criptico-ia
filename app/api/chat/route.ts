@@ -36,6 +36,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "El ultimo mensaje debe ser del usuario." }, { status: 400 });
   }
 
+  const turnosUsuario = mensajes.filter((m) => m.role === "user").length;
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return NextResponse.json({ error: "Falta configurar GEMINI_API_KEY en el servidor." }, { status: 503 });
@@ -55,7 +56,7 @@ export async function POST(req: Request) {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
         body: JSON.stringify({
-          systemInstruction: { parts: [{ text: systemPromptParaNivel(nivel) }] },
+          systemInstruction: { parts: [{ text: systemPromptParaNivel(nivel, turnosUsuario) }] },
           contents: mensajes,
           ...(continuationToken ? { continuationToken } : {}),
           generationConfig: {
