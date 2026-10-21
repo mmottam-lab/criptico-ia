@@ -373,3 +373,66 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 .notas-equipo textarea:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
 .notas-equipo textarea::placeholder { color: var(--fg-3); }
 .notas-equipo [role="status"] { color: var(--fg-3); font-size: 11px; line-height: 1.6; margin-top: 10px; }
+
+/* Consola de una pantalla: reto, herramientas y conversación. */
+.workspace-switch { display: none; }
+.mission-active .nivel-top { padding: 12px 2vw; }
+.mission-active .mission-map { width: calc(100% - 4vw); max-width: none; margin-top: 16px; }
+.mission-active .sector-heading { width: calc(100% - 4vw); max-width: none; margin: 16px auto; }
+.mission-active .sector-heading > .eyebrow { display: none; }
+.mission-active .sector-heading h1 { font-size: 25px; }
+.mission-active .nivel-grid { width: calc(100% - 4vw); max-width: none; gap: 12px; }
+.mission-active .panel { padding: 16px; gap: 12px; }
+.mission-active .panel-chat { padding: 0; }
+.mission-active .panel h2 { font-size: 18px; }
+.mission-active .panel .intro { font-size: 13px; }
+.mission-active .texto { padding: 12px; font-size: 12px; }
+.mission-active .habilidad { font-size: 12px; }
+.mission-active .habilidad span { font-size: 10px; }
+.mission-active .mesa-heading > span, .mission-active .mesa-heading .eyebrow { display: none; }
+.mission-active .mesa-ayuda { font-size: 11px; }
+.mission-active .alfabeto { gap: 4px; }
+.mission-active .alfabeto button { padding: 5px 2px; gap: 3px; min-height: 44px; }
+.mission-active .alfabeto strong { font-size: 15px; }
+.mission-active .alfabeto button > span { font-size: 11px; }
+.mission-active .desplazamiento input { margin: 8px 0; }
+.mission-active .notas-equipo { padding-top: 12px; display: flex; flex-direction: column; flex: 1; }
+.mission-active .notas-equipo p { margin: 6px 0 8px; }
+.mission-active .notas-equipo textarea { min-height: 100px; flex: 1; padding: 10px; font-size: 13px; }
+.mission-active .notas-equipo [role="status"] { margin-top: 6px; font-size: 10px; }
+.panel-reto:focus-visible, .mesa-trabajo:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+@media (min-width: 1100px) {
+  .mission-active { height: 100dvh; min-height: 600px; }
+  .mission-active .nivel-grid { flex: 1; min-height: 0; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr) minmax(0, 1.1fr); padding-bottom: 16px; align-items: stretch; }
+  .mission-active .reto-workspace { display: contents; }
+  .mission-active .panel-reto, .mission-active .mesa-trabajo { overflow-y: auto; scrollbar-gutter: stable; }
+  .mission-active .panel-chat { position: static; min-height: 0; }
+  .mission-active .chat { height: 100%; min-height: 0; max-height: none; }
+  .mission-active .chat-head { padding: 12px; }
+  .mission-active .chat-lista { padding: 12px; }
+  .mission-active .chat-input { padding: 10px; }
+  .mission-active .chat-input textarea { font-size: 13px; }
+  .mission-active .chat-input button { padding: 10px; font-size: 13px; }
+}
+@media (max-width: 1099px) {
+  .workspace-switch { display: flex; gap: 6px; width: calc(100% - 4vw); margin: 0 auto 12px; }
+  .workspace-switch button { flex: 1; min-height: 44px; padding: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg-2); color: var(--fg-2); font-size: 12px; cursor: pointer; }
+  .workspace-switch button[aria-pressed="true"] { color: var(--acc); border-color: var(--acc); }
+  .mission-active .nivel-grid { display: block; padding-bottom: 16px; }
+  .mission-active .reto-workspace { display: contents; }
+  .mission-active [data-vista="reto"] .mesa-trabajo, .mission-active [data-vista="reto"] .panel-chat,
+  .mission-active [data-vista="herramientas"] .panel-reto, .mission-active [data-vista="herramientas"] .panel-chat,
+  .mission-active [data-vista="chat"] .panel-reto, .mission-active [data-vista="chat"] .mesa-trabajo { display: none; }
+  .mission-active .panel-chat { position: static; }
+  .mission-active .chat { height: max(380px, calc(100dvh - 240px)); min-height: 0; max-height: none; }
+}
+.reto-instrucciones summary { cursor: pointer; color: var(--fg-2); font-size: 13px; }
+.reto-instrucciones .intro { margin-top: 10px; }
+@media (min-width: 1100px) {
+  .mission-active .mesa-trabajo { gap: 8px; }
+  .mission-active .alfabeto { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+  .mission-active .alfabeto button { height: 48px; min-height: 48px; padding: 4px 0; gap: 2px; line-height: 1; }
+  .mission-active .alfabeto small { font-size: 8px; }
+  .mission-active .alfabeto strong { font-size: 14px; }
+  .mission-active .alfabeto button > span { font-size: 10px; }
+}

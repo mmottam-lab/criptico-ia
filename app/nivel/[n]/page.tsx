@@ -20,6 +20,7 @@ function ContenidoNivel({ n }: { n: number }) {
   const router = useRouter();
   const nivel = getNivel(n);
 
+  const [vista, setVista] = useState("reto");
   const [listo, setListo] = useState(false);
   const [codigo, setCodigo] = useState("");
   const [estado, setEstado] = useState<"idle" | "checando" | "mal" | "bien">("idle");
@@ -106,7 +107,7 @@ function ContenidoNivel({ n }: { n: number }) {
   const esGuardian = n === TOTAL_NIVELES;
 
   return (
-    <main className="nivel">
+    <main className={`nivel ${estado !== "bien" ? "mission-active" : ""}`}>
       <header className="nivel-top">
         <a className="mission-brand" href="/">ARCHIVO <span>2036</span></a>
         <span className="mission-location">SECTOR 0{n} / 05</span>
@@ -116,12 +117,15 @@ function ContenidoNivel({ n }: { n: number }) {
       <MapaMision actual={n} completados={estado === "bien" ? n : n-1} />
       {estado === "bien" ? <Descubrimiento nivel={n} continuar={continuarMision} /> : <>
       <div className="sector-heading"><p className="eyebrow">Exploración en curso</p><h1>{APRENDIZAJES[n-1].sector}</h1><span>01 Resuelve el reto <b>→</b> 02 Descubre la IA</span></div>
-      <div className="nivel-grid">
+      <nav className="workspace-switch" aria-label="Vista de trabajo">
+        {[["reto", "01 Reto"], ["herramientas", "02 Herramientas"], ["chat", "03 Chat IA"]].map(([id, label]) => <button type="button" key={id} aria-pressed={vista === id} onClick={() => setVista(id)}>{label}</button>)}
+      </nav>
+      <div className="nivel-grid" data-vista={vista}>
         <div className="reto-workspace">
-        <section className="panel">
+        <section className="panel panel-reto" aria-label="Reto del sector" tabIndex={0}>
           <p className="eyebrow">Señal interceptada / {nivel.tipo}</p>
           <h2>{nivel.titulo}</h2>
-          <p className="intro">{nivel.intro}</p>
+          <details className="reto-instrucciones"><summary>Cómo abordar este reto</summary><p className="intro">{nivel.intro}</p></details>
 
           <div className="texto-wrap">
             <pre className={`texto ${esGuardian ? "guardian" : ""}`}>{nivel.texto}</pre>
