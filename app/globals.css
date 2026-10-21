@@ -347,7 +347,6 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 .home-status, .home-footer { width: 100%; }
 
 /* Mesa de trabajo: referencias manipulables y notas junto al chat. */
-.reto-workspace { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
 .mesa-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .mesa-heading .eyebrow { font-size: 9px; color: var(--cyan); margin-bottom: 8px; }
 .mesa-heading > span { font: 9px var(--mono); color: var(--fg-3); white-space: nowrap; }
@@ -398,8 +397,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 .panel-reto:focus-visible, .mesa-trabajo:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 @media (min-width: 1100px) {
   .mission-active { height: 100dvh; min-height: 600px; }
-  .mission-active .nivel-grid { flex: 1; min-height: 0; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr) minmax(0, 1.1fr); padding-bottom: 16px; align-items: stretch; }
-  .mission-active .reto-workspace { display: contents; }
+  .mission-active .nivel-grid { flex: 1; min-height: 0; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, .9fr); padding-bottom: 16px; align-items: stretch; }
   .mission-active .panel-reto, .mission-active .mesa-trabajo { overflow-y: auto; scrollbar-gutter: stable; }
   .mission-active .panel-chat { position: static; min-height: 0; }
   .mission-active .chat { height: 100%; min-height: 0; max-height: none; }
@@ -414,7 +412,6 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
   .workspace-switch button { flex: 1; min-height: 44px; padding: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg-2); color: var(--fg-2); font-size: 12px; cursor: pointer; }
   .workspace-switch button[aria-pressed="true"] { color: var(--acc); border-color: var(--acc); }
   .mission-active .nivel-grid { display: block; padding-bottom: 16px; }
-  .mission-active .reto-workspace { display: contents; }
   .mission-active [data-vista="reto"] .mesa-trabajo, .mission-active [data-vista="reto"] .panel-chat,
   .mission-active [data-vista="herramientas"] .panel-reto, .mission-active [data-vista="herramientas"] .panel-chat,
   .mission-active [data-vista="chat"] .panel-reto, .mission-active [data-vista="chat"] .mesa-trabajo { display: none; }

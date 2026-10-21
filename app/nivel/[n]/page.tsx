@@ -118,10 +118,9 @@ function ContenidoNivel({ n }: { n: number }) {
       {estado === "bien" ? <Descubrimiento nivel={n} continuar={continuarMision} /> : <>
       <div className="sector-heading"><p className="eyebrow">Exploración en curso</p><h1>{APRENDIZAJES[n-1].sector}</h1><span>01 Resuelve el reto <b>→</b> 02 Descubre la IA</span></div>
       <nav className="workspace-switch" aria-label="Vista de trabajo">
-        {[["reto", "01 Reto"], ["herramientas", "02 Herramientas"], ["chat", "03 Chat IA"]].map(([id, label]) => <button type="button" key={id} aria-pressed={vista === id} onClick={() => setVista(id)}>{label}</button>)}
+        {[["reto", "01 Reto"], ["chat", "02 Chat IA"], ["herramientas", "03 Herramientas"]].map(([id, label]) => <button type="button" key={id} aria-pressed={vista === id} onClick={() => setVista(id)}>{label}</button>)}
       </nav>
       <div className="nivel-grid" data-vista={vista}>
-        <div className="reto-workspace">
         <section className="panel panel-reto" aria-label="Reto del sector" tabIndex={0}>
           <p className="eyebrow">Señal interceptada / {nivel.tipo}</p>
           <h2>{nivel.titulo}</h2>
@@ -170,9 +169,6 @@ function ContenidoNivel({ n }: { n: number }) {
           </form>
         </section>
 
-        <MesaTrabajo nivel={n} />
-        </div>
-
         <section className="panel panel-chat">
           <Chat
             nivel={n}
@@ -181,6 +177,7 @@ function ContenidoNivel({ n }: { n: number }) {
             saludo={esGuardian ? nivel.texto : "Soy tu guía de exploración. Comparte lo que observas o tu primer intento: avanzaremos una pista a la vez."}
           />
         </section>
+        <MesaTrabajo nivel={n} />
       </div>
       </>}
     </main>
