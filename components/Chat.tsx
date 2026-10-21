@@ -103,7 +103,7 @@ export default function Chat({
         ))}
         {cargando && (
           <div className="msg model">
-            <div className="msg-body pensando">
+            <div className="msg-body pensando" role="status" aria-label="La guía está preparando una pista">
               <span />
               <span />
               <span />
@@ -114,6 +114,7 @@ export default function Chat({
       </div>
       <div className="chat-input">
         <textarea
+          aria-label="Mensaje para tu guía de IA"
           ref={taRef}
           value={input}
           onChange={(e) => setInput(e.target.value)}

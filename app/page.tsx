@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import ArchivoScene from "@/components/ArchivoScene";
 import { iniciar, leerProgreso, reiniciar } from "@/lib/progreso";
 
 export default function Inicio() {
@@ -29,24 +30,20 @@ export default function Inicio() {
   }
 
   return (
-    <main className="portada">
+    <main className="portada game-home">
+      <div className="home-status"><span>CENTRO / EXPLORACIONES DE IA</span><span>EXPEDICIÓN 001</span></div>
+      <div className="home-layout">
       <div className="portada-inner">
-        <p className="eyebrow">Licenciatura en Inteligencia Artificial / CENTRO</p>
+        <p className="eyebrow">Misión interactiva · 5 sectores</p>
         <h1>
-          El Archivo <span>2036</span>
+          El Archivo <span>2036<span className="title-cursor" aria-hidden="true">_</span></span>
         </h1>
         <p className="lead">
-          Interceptamos un mensaje sellado hace diez anos por la primera generacion de la licenciatura.
-          Esta protegido por cinco capas. Tienen una IA que los guia con preguntas y pistas. Ustedes descubren la respuesta y el reloj corre.
+          Un archivo del futuro está a punto de desaparecer. Recuperen sus cinco fragmentos con ayuda de una IA y descubran cómo funciona, dónde falla y qué decisiones siguen en sus manos.
         </p>
 
-        <ul className="reglas">
-          <li>Cada capa resuelta entrega la palabra que abre la siguiente.</li>
-          <li>La IA los ayuda a pensar: compartan sus intentos, propongan ideas y comprueben sus respuestas.</li>
-          <li>Pueden pedir una pista por capa. Cada pista suma 2 minutos al tiempo final.</li>
-          <li>La ultima capa no se descifra. Se conversa.</li>
-        </ul>
-
+        <div className="mission-brief"><span>SU OBJETIVO</span><p>Exploren un código. Conversen con su guía. Comprueben una idea sobre inteligencia artificial.</p></div>
+        <p className="mission-meta">◷ Cerca de 60 min <span>01 dispositivo por equipo</span></p>
         <form onSubmit={comenzar} className="form-equipo">
           <label htmlFor="equipo">Nombre del equipo</label>
           <div className="row">
@@ -59,7 +56,7 @@ export default function Inicio() {
               autoComplete="off"
             />
             <button type="submit" disabled={!equipo.trim()}>
-              Abrir el archivo
+              Iniciar misión →
             </button>
           </div>
         </form>
@@ -73,6 +70,9 @@ export default function Inicio() {
           </p>
         )}
       </div>
+      <div className="home-art"><ArchivoScene /><div className="transmission"><span>TRANSMISIÓN 00 / ANTES DE ENTRAR</span><h2>La IA propone.<br />Ustedes comprueban.</h2><p>La IA puede generar texto y reconocer patrones. También puede equivocarse. Aquí aprenderán a trabajar con ella, no a creerle a ciegas.</p></div></div>
+      </div>
+      <footer className="home-footer"><span>LICENCIATURA EN INTELIGENCIA ARTIFICIAL / CENTRO</span><span>Las pistas del reto suman 2 minutos. Aprender no penaliza.</span></footer>
     </main>
   );
 }

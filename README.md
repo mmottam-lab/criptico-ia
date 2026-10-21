@@ -50,3 +50,9 @@ Las respuestas no se incluyen en el JavaScript del navegador, pero este reposito
 La API de chat no tiene autenticacion ni limite de peticiones por equipo. Antes de una convocatoria publica, conviene agregar control de acceso y limites persistentes para proteger la cuota de Gemini.
 
 Si falla el chat, el mensaje vuelve al campo de escritura para reintentarlo. Los errores distinguen falta de configuracion, limite de cuota, modelo inaccesible y tiempo de espera agotado.
+
+## Mision visual y aprendizajes
+
+Cada sector combina un reto de criptografia con un descubrimiento sobre IA y una pregunta con retroalimentacion. No hay penalizacion por reintentar la pregunta; el cronometro sigue corriendo. Se avanza al siguiente sector despues de responderla correctamente. El descubrimiento pendiente se conserva al recargar.
+
+`lib/aprendizajes.ts` define conceptos, conexiones y preguntas. Al terminar, la bitacora permite repasar las cinco ideas. Las partidas anteriores siguen siendo compatibles.

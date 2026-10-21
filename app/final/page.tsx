@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import ArchivoScene from "@/components/ArchivoScene";
+import { APRENDIZAJES } from "@/lib/aprendizajes";
 import { formatoTiempo, leerProgreso, Progreso, reiniciar, tiempoTotalMs } from "@/lib/progreso";
 
 export default function Final() {
@@ -25,7 +27,8 @@ export default function Final() {
   return (
     <main className="portada final">
       <div className="portada-inner">
-        <p className="eyebrow">Archivo abierto</p>
+        <ArchivoScene completados={5} compacto />
+        <p className="eyebrow">Misión completada / 5 fragmentos recuperados</p>
         <h1>
           Bienvenidos, <span>primera generacion</span>.
         </h1>
@@ -50,6 +53,7 @@ export default function Final() {
           </div>
         </div>
 
+        <section className="field-notebook"><h2>Tu bitácora de IA</h2><p>Cinco ideas para llevar fuera del juego.</p>{APRENDIZAJES.map((a,i) => <details key={a.titulo}><summary><span>0{i+1}</span> {a.titulo}</summary><p>{a.concepto}</p><p className="transmission-task">{a.practica}</p></details>)}</section>
         <p className="muted">Tomen captura de esta pantalla y muestrenla para registrar su tiempo.</p>
 
         <button

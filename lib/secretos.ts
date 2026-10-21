@@ -1,4 +1,5 @@
 import "server-only";
+import { APRENDIZAJES } from "./aprendizajes";
 
 // SOLO SERVIDOR. Nunca importar este archivo desde un componente cliente.
 
@@ -66,5 +67,5 @@ const PRIMER_PASO: Record<number, string> = {
 export function systemPromptParaNivel(n: number, turnosUsuario = 1): string {
   if (n === 5) return GUARDIAN;
   const inicio = turnosUsuario <= 1 ? `\n\nESTADO ACTUAL: primer turno del equipo. Si solo pide resolver el reto, aplica estrictamente este primer paso: ${PRIMER_PASO[n] ?? "Pide una observacion inicial."} No avances a la segunda pista en este mismo mensaje, aunque insista. Si ya presenta un intento concreto, responde a ese intento; si presenta una solucion con evidencia, permite la validacion.` : "";
-  return `${TUTOR}\n\n${GUIA_POR_NIVEL[n] ?? ""}${inicio}`;
+  return `${TUTOR}\n\n${GUIA_POR_NIVEL[n] ?? ""}${inicio}\n\nCONEXION EDUCATIVA: ${APRENDIZAJES[n-1]?.concepto ?? ""} Si preguntan sobre IA, explica este concepto brevemente con un ejemplo; no reveles el cifrado ni fuerces una leccion en cada turno.`;
 }

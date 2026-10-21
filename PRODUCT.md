@@ -10,11 +10,11 @@ Equipos que participan en una actividad educativa de CENTRO y resuelven cinco ca
 
 ## Product Purpose
 
-Practicar claridad, contexto y comprobacion de respuestas de IA. La lectura del chat debe permitir seguir explicaciones, tablas de sustitucion y ejemplos de codigo sin distraer del reto.
+Ensenar que es la IA y como trabajar con ella mediante retos, una guia conversacional y descubrimientos con retroalimentacion. La lectura del chat debe permitir seguir explicaciones, tablas de sustitucion y ejemplos de codigo sin distraer del reto.
 
 ## Design Principles
 
-- Conservar la identidad visual existente durante correcciones funcionales.
+- Presentar el aprendizaje como una expedicion de cinco sectores: explorar, comprobar y recuperar conocimiento.
 - Priorizar lectura clara y continuidad entre niveles.
 - Mostrar errores recuperables y mantener el trabajo del equipo.
 - Mantener el contenido legible en pantallas estrechas.

@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import MapaMision from "@/components/MapaMision";
+import Descubrimiento from "@/components/Descubrimiento";
+import { APRENDIZAJES } from "@/lib/aprendizajes";
 import Chat from "@/components/Chat";
 import Cronometro from "@/components/Cronometro";
 import { getNivel, TOTAL_NIVELES } from "@/lib/niveles";
@@ -37,6 +40,7 @@ function ContenidoNivel({ n }: { n: number }) {
       router.replace(p.desbloqueado > TOTAL_NIVELES ? "/final" : `/nivel/${p.desbloqueado}`);
       return;
     }
+    if (p.descubrimientoPendiente === n) setEstado("bien");
     setPistaVisible(p.pistas.includes(n));
     setListo(true);
   }, [n, nivel, router]);
@@ -57,14 +61,9 @@ function ContenidoNivel({ n }: { n: number }) {
       const data = await r.json();
       if (!r.ok) throw new Error(data.error || "No se pudo verificar la respuesta. Intenta de nuevo.");
       if (data.ok) {
-        setEstado("bien");
         const p = leerProgreso();
-        if (p) {
-          p.desbloqueado = Math.max(p.desbloqueado, n + 1);
-          if (n === TOTAL_NIVELES && !p.fin) p.fin = Date.now();
-          guardarProgreso(p);
-        }
-        setTimeout(() => router.push(n === TOTAL_NIVELES ? "/final" : `/nivel/${n + 1}`), 900);
+        if (p) { p.descubrimientoPendiente = n; guardarProgreso(p); }
+        setEstado("bien");
       } else {
         setEstado("mal");
         setTimeout(() => setEstado("idle"), 1200);
@@ -73,6 +72,16 @@ function ContenidoNivel({ n }: { n: number }) {
       setEstado("idle");
       setError(error instanceof Error ? error.message : "No se pudo verificar la respuesta. Intenta de nuevo.");
     }
+  }
+
+  function continuarMision() {
+    const p = leerProgreso();
+    if (!p) { router.replace("/"); return; }
+    delete p.descubrimientoPendiente;
+    p.desbloqueado = Math.max(p.desbloqueado, n + 1);
+    if (n === TOTAL_NIVELES && !p.fin) p.fin = Date.now();
+    guardarProgreso(p);
+    router.push(n === TOTAL_NIVELES ? "/final" : `/nivel/${n + 1}`);
   }
 
   function pedirPista() {
@@ -98,17 +107,17 @@ function ContenidoNivel({ n }: { n: number }) {
   return (
     <main className="nivel">
       <header className="nivel-top">
-        <div className="progreso">
-          {Array.from({ length: TOTAL_NIVELES }, (_, i) => (
-            <span key={i} className={`seg ${i + 1 < n ? "done" : i + 1 === n ? "cur" : ""}`} />
-          ))}
-        </div>
+        <a className="mission-brand" href="/">ARCHIVO <span>2036</span></a>
+        <span className="mission-location">SECTOR 0{n} / 05</span>
         <Cronometro />
       </header>
 
+      <MapaMision actual={n} completados={estado === "bien" ? n : n-1} />
+      {estado === "bien" ? <Descubrimiento nivel={n} continuar={continuarMision} /> : <>
+      <div className="sector-heading"><p className="eyebrow">Exploración en curso</p><h1>{APRENDIZAJES[n-1].sector}</h1><span>01 Resuelve el reto <b>→</b> 02 Descubre la IA</span></div>
       <div className="nivel-grid">
         <section className="panel">
-          <p className="eyebrow">{nivel.tipo}</p>
+          <p className="eyebrow">Señal interceptada / {nivel.tipo}</p>
           <h2>{nivel.titulo}</h2>
           <p className="intro">{nivel.intro}</p>
 
@@ -125,6 +134,7 @@ function ContenidoNivel({ n }: { n: number }) {
             <span>Lo que se entrena aqui:</span> {nivel.habilidad}
           </p>
 
+          <details className="ia-transmission"><summary>¿Qué tiene que ver este reto con la IA?</summary><p>{APRENDIZAJES[n-1].concepto}</p><p className="transmission-task">{APRENDIZAJES[n-1].practica}</p></details>
           <div className="pista-wrap">
             {pistaVisible ? (
               <p className="pista">{nivel.pista}</p>
@@ -146,8 +156,8 @@ function ContenidoNivel({ n }: { n: number }) {
                 autoComplete="off"
                 autoCapitalize="characters"
               />
-              <button type="submit" disabled={!codigo.trim() || estado === "checando" || estado === "bien"}>
-                {estado === "bien" ? "Abierta" : estado === "mal" ? "No" : "Abrir"}
+              <button type="submit" disabled={!codigo.trim() || estado === "checando"}>
+                {estado === "checando" ? "Verificando…" : estado === "mal" ? "Reintentar" : "Descifrar"}
               </button>
             </div>
             {error && <p role="alert">{error}</p>}
@@ -159,10 +169,11 @@ function ContenidoNivel({ n }: { n: number }) {
             nivel={n}
             placeholder={nivel.placeholder}
             nombreIA={esGuardian ? "El guardian" : "IA del archivo"}
-            saludo={esGuardian ? nivel.texto : undefined}
+            saludo={esGuardian ? nivel.texto : "Soy tu guía de exploración. Comparte lo que observas o tu primer intento: avanzaremos una pista a la vez."}
           />
         </section>
       </div>
+      </>}
     </main>
   );
 }

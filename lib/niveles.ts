@@ -20,7 +20,7 @@ export const NIVELES: Nivel[] = [
     titulo: "Capa 1 / Desplazamiento",
     tipo: "Cifrado Cesar",
     intro:
-      "La primera capa del archivo usa el cifrado mas antiguo que existe. Cada letra fue movida un numero fijo de posiciones en el alfabeto. Propongan un desplazamiento y pidan a la IA una pista para comprobarlo. Ustedes encuentran la palabra que abre la siguiente capa.",
+      "La primera capa del archivo usa un cifrado clásico. Cada letra fue movida un numero fijo de posiciones en el alfabeto. Propongan un desplazamiento y pidan a la IA una pista para comprobarlo. Ustedes encuentran la palabra que abre la siguiente capa.",
     texto:
       "HYJOPCV HIPLYAV. LZAL TLUZHQL MBL ZLSSHKV LU KVZ TPS AYLPUAH F ZLPZ WVY SH WYPTLYH NLULYHJPVU. JHKH JHWH WYVALNL H SH ZPNBPLUAL. WHYH HIYPY SH ZLNBUKH JHWH LZJYPIHU SH WHSHIYH ZLTPSSH.",
     pista: "Dile a la IA que tipo de cifrado es y en que idioma esta el mensaje. Si no sabe el desplazamiento, pidele que pruebe los 25 posibles.",
@@ -44,7 +44,7 @@ export const NIVELES: Nivel[] = [
     titulo: "Capa 3 / Llave repetida",
     tipo: "Cifrado Vigenere",
     intro:
-      "Esta capa usa una palabra como llave que se repite sobre todo el texto. Sin la llave correcta, la IA va a inventar un resultado que suena convincente pero es falso. La llave ya la tienen: la encontraron en la capa anterior.",
+      "Esta capa usa una palabra como llave que se repite sobre todo el texto. Sin la llave correcta, la IA puede proponer un resultado que suena convincente pero es falso. La llave ya la tienen: la encontraron en la capa anterior.",
     texto:
       "GILTSEA PEJR OOIRVNR. QNSV PFVUNN. YE WLOETN GUGO AO RWNR QVFEEXR DRRB IMTCADR WO ISFPHIMKO N PYIHR JVSGE. FR EHIAXU VGGA PYMKCQINHU GCE UA KORFQINR KLS AO PSHWWN EA RUUWR. EFGLZPNN BVUTIYO CELR QBNGMHLOE.",
     pista: "Dile explicitamente: 'es un cifrado Vigenere, la llave es NEURONA, los espacios y puntos no se cifran'. Si el resultado no tiene sentido en espanol, la IA se equivoco al contar: pidele que lo haga con codigo o letra por letra.",

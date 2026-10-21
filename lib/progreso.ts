@@ -6,6 +6,7 @@ export type Progreso = {
   equipo: string;
   inicio: number; // timestamp ms
   desbloqueado: number; // nivel mas alto accesible (1..6; 6 = final)
+  descubrimientoPendiente?: number;
   fin?: number; // timestamp ms al terminar
   pistas: number[]; // niveles donde se uso pista
 };
@@ -22,6 +23,7 @@ export function leerProgreso(): Progreso | null {
       || !Number.isFinite(p.inicio) || p.inicio <= 0
       || !Number.isInteger(p.desbloqueado) || p.desbloqueado < 1 || p.desbloqueado > TOTAL_NIVELES + 1
       || !Array.isArray(p.pistas) || p.pistas.some((n: unknown) => typeof n !== "number" || !Number.isInteger(n) || n < 1 || n > TOTAL_NIVELES)
+      || (p.descubrimientoPendiente !== undefined && (!Number.isInteger(p.descubrimientoPendiente) || p.descubrimientoPendiente < 1 || p.descubrimientoPendiente > TOTAL_NIVELES || p.descubrimientoPendiente > p.desbloqueado))
       || (p.fin !== undefined && (!Number.isFinite(p.fin) || p.fin < p.inicio))
       || (p.desbloqueado === TOTAL_NIVELES + 1 && p.fin === undefined)) return null;
     return { ...p, pistas: [...new Set<number>(p.pistas)] };

@@ -176,3 +176,172 @@ h1, h2, h3, p { margin: 0; }
 .chat-continuacion { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--fg-2); font-size: 13px; white-space: normal; }
 .chat-continuacion p { margin-bottom: 8px; }
 .chat-continuacion button:disabled { opacity: 0.4; cursor: default; }
+
+/* Expedición: superficies oscuras y señales de navegación visibles. */
+:root { --bg: oklch(0.15 0.012 245); --bg-2: oklch(0.19 0.014 245); --bg-3: oklch(0.24 0.018 245); --line: oklch(0.34 0.025 245); --fg: oklch(0.94 0.012 100); --fg-2: oklch(0.77 0.02 240); --fg-3: oklch(0.66 0.022 240); --acc: oklch(0.91 0.18 118); --cyan: oklch(0.8 0.12 210); }
+button, a, summary { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--acc); outline-offset: 4px; }
+.game-home { display: block; padding: 0 5vw; background: radial-gradient(ellipse at 80% 35%, oklch(0.25 0.05 220 / 0.45), transparent 55%), var(--bg); }
+.home-status, .home-footer { max-width: 1320px; margin: auto; display: flex; justify-content: space-between; gap: 20px; font: 11px var(--mono); letter-spacing: .09em; color: var(--fg-3); }
+.home-status { padding: 28px 0; border-bottom: 1px solid var(--line); }
+.home-status span:last-child { color: var(--acc); }
+.home-layout { max-width: 1320px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 7%; align-items: center; padding: 54px 0 64px; }
+.game-home .portada-inner { gap: 26px; }
+.game-home h1 { font-size: clamp(56px, 6.6vw, 100px); letter-spacing: -.06em; line-height: .95; }
+.game-home h1 > span { display: block; margin-top: 8px; }
+.title-cursor { font-weight: 300; color: var(--cyan); }
+.game-home .lead { max-width: 46ch; font-size: 17px; line-height: 1.65; }
+.mission-brief { display: grid; grid-template-columns: 96px 1fr; gap: 12px; border-top: 1px solid var(--line); padding-top: 20px; }
+.mission-brief > span { font: 10px var(--mono); color: var(--cyan); letter-spacing: .1em; padding-top: 5px; }
+.mission-brief p { font-size: 14px; line-height: 1.6; color: var(--fg-2); }
+.mission-meta { display: flex; gap: 28px; font: 12px var(--mono); color: var(--fg-3); }
+.game-home .form-equipo { margin-top: 4px; }
+.game-home .form-equipo label { color: var(--fg-2); }
+.game-home .row input { min-height: 50px; }
+.home-footer { padding: 22px 0; border-top: 1px solid var(--line); line-height: 1.7; }
+.archivo-scene { width: 100%; position: relative; }
+.scene-coordinates { display: flex; justify-content: space-between; font: 9px var(--mono); letter-spacing: .13em; color: var(--fg-3); }
+.archivo-scene svg { width: 100%; height: auto; display: block; overflow: visible; }
+.scene-grid { color: var(--line); opacity: .3; stroke-width: .6; }
+.orbit-outside { stroke: var(--cyan); stroke-width: 1; opacity: .65; }
+.orbit-dotted { stroke: var(--fg-3); stroke-width: 1; stroke-dasharray: 2 9; opacity: .5; }
+.scene-lines { stroke: var(--cyan); stroke-width: 1; opacity: .5; }
+.core-shell { fill: var(--bg-2); stroke: var(--cyan); stroke-width: 1.5; }
+.core-inner { fill: oklch(0.22 0.045 215); stroke: var(--cyan); stroke-width: 1; }
+.core-heart { fill: oklch(0.3 0.06 180); stroke: var(--acc); stroke-width: 1.5; }
+.core-lock { fill: none; stroke: var(--acc); stroke-width: 2.5; stroke-linejoin: round; }
+.core-key { fill: var(--acc); }
+.core-float { animation: core-breathe 6s ease-in-out infinite; }
+@keyframes core-breathe { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.satellite rect { fill: var(--bg-2); stroke: var(--cyan); }
+.satellite text { fill: var(--fg-2); font: 12px var(--mono); }
+.satellite.recovered rect { fill: var(--acc); stroke: var(--acc); }
+.satellite.recovered text { fill: var(--bg); }
+.scene-caption { display: flex; align-items: center; gap: 10px; color: var(--cyan); font: 10px var(--mono); letter-spacing: .1em; padding: 14px 0; border-top: 1px solid var(--line); }
+.scene-caption > span:last-child { margin-left: auto; color: var(--acc); }
+.signal-dot { width: 6px; height: 6px; background: var(--acc); border-radius: 50%; }
+.transmission { margin: 24px 0 0 22%; }
+.transmission > span { color: var(--fg-3); font: 9px var(--mono); letter-spacing: .1em; }
+.transmission h2 { font-size: 25px; letter-spacing: -.03em; line-height: 1.2; margin: 12px 0; }
+.transmission p { font-size: 13px; line-height: 1.65; color: var(--fg-2); max-width: 48ch; }
+.nivel { background: radial-gradient(ellipse at 50% 0, oklch(0.22 0.04 220 / .4), transparent 65%), var(--bg); }
+.nivel-top { padding: 18px 4vw; backdrop-filter: none; background: var(--bg); }
+.mission-brand { text-decoration: none; font: bold 16px var(--mono); letter-spacing: -.04em; color: var(--fg); }
+.mission-brand span { color: var(--acc); }
+.mission-location { font: 10px var(--mono); color: var(--fg-3); letter-spacing: .12em; }
+.mission-map { max-width: 1320px; width: calc(100% - 8vw); margin: 30px auto 0; }
+.mission-map ol { display: flex; list-style: none; padding: 0; margin: 0; }
+.mission-map li { flex: 1; position: relative; display: flex; gap: 10px; align-items: center; color: var(--fg-3); }
+.mission-map li:not(:last-child)::after { content: ''; height: 1px; background: var(--line); flex: 1; margin: 0 12px; }
+.map-node { flex-shrink: 0; width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; font: 11px var(--mono); background: var(--bg); }
+.map-label { font-size: 12px; white-space: nowrap; }
+.map-label small { display: block; font: 9px var(--mono); margin-top: 5px; color: var(--fg-3); }
+.mission-map .active { color: var(--fg); }
+.active .map-node { border-color: var(--acc); color: var(--acc); box-shadow: 0 0 0 5px oklch(0.91 0.18 118 / .06); }
+.recovered .map-node { background: var(--acc); color: var(--bg); border-color: var(--acc); }
+.sector-heading { max-width: 1320px; width: calc(100% - 8vw); margin: 38px auto 22px; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 20px; }
+.sector-heading > p { width: 100%; margin-bottom: 10px; font-size: 10px; color: var(--cyan); }
+.sector-heading h1 { font-size: 36px; letter-spacing: -.04em; }
+.sector-heading > span { font: 11px var(--mono); color: var(--fg-3); margin-left: auto; }
+.sector-heading b { color: var(--acc); margin: 0 10px; }
+.nivel-grid { max-width: 1320px; width: calc(100% - 8vw); padding: 0 0 40px; gap: 20px; align-items: start; }
+.panel { border-radius: 8px; gap: 18px; padding: 24px; }
+.panel > .eyebrow { font-size: 10px; color: var(--cyan); }
+.panel h2 { font-size: 21px; }
+.panel .intro { font-size: 14px; }
+.texto { font-size: 13px; line-height: 1.8; border-radius: 4px; }
+.pista { border: 1px solid var(--line); border-radius: 6px; }
+.ia-transmission { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 14px 0; }
+.ia-transmission summary { color: var(--cyan); cursor: pointer; font-size: 13px; line-height: 1.5; }
+.ia-transmission p { margin-top: 14px; font-size: 14px; line-height: 1.65; color: var(--fg-2); }
+.transmission-task { color: var(--fg) !important; font-style: italic; }
+.panel-chat { padding: 0; position: sticky; top: 86px; }
+.chat { height: min(740px, calc(100dvh - 110px)); min-height: 440px; }
+.chat-lista { min-height: 0; flex-basis: 0; padding: 20px; }
+.chat-head { flex-wrap: wrap; }
+.chat-hint { width: 100%; margin-left: 18px; font-size: 9px; }
+.chat-input textarea { min-width: 0; font-size: 14px; }
+.msg-body { max-width: 92%; border-radius: 7px; font-size: 14px; }
+.discovery { max-width: 1160px; width: calc(100% - 8vw); margin: 48px auto; display: grid; grid-template-columns: .8fr 1.2fr; gap: 7%; align-items: start; }
+.discovery-art { position: sticky; top: 100px; }
+.discovery-art > p { margin-top: 22px; line-height: 1.6; color: var(--fg-2); font-size: 14px; }
+.discovery-art > .eyebrow { color: var(--acc); font-size: 11px; }
+.discovery-content > .eyebrow { color: var(--cyan); font-size: 10px; }
+.discovery-content h1 { margin: 14px 0 22px; font-size: 36px; line-height: 1.1; letter-spacing: -.04em; }
+.discovery-content h1:focus { outline: none; }
+.concept-text { font-size: 16px; line-height: 1.75; color: var(--fg-2); }
+.connection-note { padding: 20px 0; margin: 20px 0; border-block: 1px solid var(--line); }
+.connection-note span { font: 10px var(--mono); color: var(--cyan); letter-spacing: .08em; }
+.connection-note p { font-size: 14px; line-height: 1.65; margin-top: 10px; color: var(--fg-2); }
+.knowledge-check { padding: 0; margin: 0; border: 0; min-width: 0; }
+.knowledge-check legend { font-size: 16px; font-weight: 600; line-height: 1.5; margin-bottom: 16px; }
+.answer-option { display: flex; width: 100%; align-items: center; gap: 14px; text-align: left; font-size: 14px; line-height: 1.5; background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; padding: 14px; margin-bottom: 8px; cursor: pointer; }
+.answer-option > span { font: 12px var(--mono); color: var(--fg-3); }
+.answer-option:hover:not(:disabled) { border-color: var(--cyan); background: var(--bg-3); }
+.answer-option.correct { border-color: var(--acc); background: oklch(0.91 0.18 118 / .08); }
+.answer-option.retry { border-color: var(--bad); }
+.answer-option:disabled { cursor: default; }
+.quiz-feedback { min-height: 76px; padding: 10px 0; color: var(--fg-2); font-size: 14px; line-height: 1.6; }
+.mission-button { background: var(--acc); color: var(--bg); display: flex; justify-content: space-between; align-items: center; gap: 24px; border: 0; border-radius: 6px; padding: 15px 20px; font-weight: 600; cursor: pointer; }
+.mission-button:disabled { opacity: .35; cursor: default; }
+.final .compacto { max-width: 300px; align-self: center; }
+.final h1 { font-size: 46px; line-height: 1.1; }
+.final .resultado { border-block: 1px solid var(--line); padding: 18px 0; }
+.final .resultado > div { border: 0; padding: 0; background: transparent; }
+.field-notebook h2 { font-size: 24px; }
+.field-notebook > p { margin: 8px 0 20px; color: var(--fg-2); }
+.field-notebook details { padding: 16px 0; border-top: 1px solid var(--line); }
+.field-notebook summary { cursor: pointer; line-height: 1.5; }
+.field-notebook summary span { font: 12px var(--mono); color: var(--acc); margin-right: 10px; }
+.field-notebook details p { margin: 14px 0 0; color: var(--fg-2); font-size: 14px; line-height: 1.7; }
+@media (max-width: 1000px) {
+  .mission-map li:not(:last-child)::after { margin-inline: 8px; }
+  .map-label { font-size: 10px; }
+  .map-label small { font-size: 8px; }
+}
+@media (max-width: 900px) {
+  .home-layout { grid-template-columns: 1fr; gap: 36px; padding-top: 36px; }
+  .home-art { max-width: 560px; width: 100%; margin: auto; }
+  .transmission { margin-left: 0; }
+  .game-home .portada-inner { max-width: none; }
+  .game-home h1 > span { display: inline; margin-left: 12px; }
+  .game-home .lead { max-width: 65ch; }
+  .home-footer { flex-direction: column; gap: 10px; }
+  .panel-chat { position: static; }
+  .chat { height: 600px; min-height: 420px; max-height: 80dvh; }
+  .discovery { grid-template-columns: 1fr; gap: 24px; }
+  .discovery-art { position: static; }
+  .discovery-art .archivo-scene { display: none; }
+  .discovery-art > p:last-child { display: none; }
+}
+@media (max-width: 600px) {
+  .home-status { font-size: 8px; padding: 20px 0; }
+  .game-home h1 { font-size: 58px; }
+  .game-home h1 > span { display: block; margin-left: 0; }
+  .game-home .row { flex-direction: column; }
+  .game-home .row button { min-height: 48px; }
+  .mission-meta { gap: 16px; font-size: 10px; flex-wrap: wrap; }
+  .mission-location { display: none; }
+  .mission-map { margin-top: 22px; }
+  .mission-map li { flex-direction: column; gap: 10px; text-align: center; }
+  .mission-map li::after { display: none; }
+  .map-label { font-size: 9px; white-space: normal; }
+  .map-label small { display: none; }
+  .sector-heading { margin-top: 28px; gap: 10px; }
+  .sector-heading > span { margin-left: 0; width: 100%; font-size: 9px; }
+  .sector-heading h1 { font-size: 30px; }
+  .panel { padding: 18px; }
+  .panel-chat { padding: 0; }
+  .chat-input { gap: 6px; padding: 10px; }
+  .chat-input button { padding: 10px; font-size: 13px; }
+  .discovery { margin-top: 20px; }
+  .discovery-content h1 { font-size: 30px; }
+  .mission-button { width: 100%; font-size: 14px; }
+  .final h1 { font-size: 36px; }
+  .final .resultado { gap: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition: none !important; }
+}
+
+.home-status, .home-footer { width: 100%; }
