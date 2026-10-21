@@ -124,7 +124,7 @@ function ContenidoNivel({ n }: { n: number }) {
         <section className="panel panel-reto" aria-label="Reto del sector" tabIndex={0}>
           <p className="eyebrow">Señal interceptada / {nivel.tipo}</p>
           <h2>{nivel.titulo}</h2>
-          <details className="reto-instrucciones"><summary>Cómo abordar este reto</summary><p className="intro">{nivel.intro}</p></details>
+          <details className="reto-instrucciones" open><summary>Cómo abordar este reto</summary><p className="intro">{nivel.intro}</p></details>
 
           <div className="texto-wrap">
             <pre className={`texto ${esGuardian ? "guardian" : ""}`}>{nivel.texto}</pre>
