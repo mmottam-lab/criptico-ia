@@ -86,11 +86,10 @@ test('el almacenamiento corrupto no rompe la partida ni el chat', () => {
 test('los cifrados revelan las palabras que acepta el servidor', async () => {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const substitution = 'WVAGOETXQKYPICRSJMDFNZHBUL';
-  for (let level = 1; level <= 4; level++) {
+  for (let level = 2; level <= 4; level++) {
     let index = 0;
     const text = NIVELES[level - 1].texto;
     const decoded = level === 4 ? text.split('\n').map(line => line[0]).join('') : text.replace(/[A-Z]/g, c => {
-      if (level === 1) return alphabet[(alphabet.indexOf(c) + 19) % 26];
       if (level === 2) return alphabet[substitution.indexOf(c)];
       return alphabet[(alphabet.indexOf(c) - alphabet.indexOf('NEURONA'[index++ % 7]) + 26) % 26];
     });

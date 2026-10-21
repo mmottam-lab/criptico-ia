@@ -56,3 +56,6 @@ Si falla el chat, el mensaje vuelve al campo de escritura para reintentarlo. Los
 Cada sector combina un reto de criptografia con un descubrimiento sobre IA y una pregunta con retroalimentacion. No hay penalizacion por reintentar la pregunta; el cronometro sigue corriendo. Se avanza al siguiente sector despues de responderla correctamente. El descubrimiento pendiente se conserva al recargar.
 
 `lib/aprendizajes.ts` define conceptos, conexiones y preguntas. Al terminar, la bitacora permite repasar las cinco ideas. Las partidas anteriores siguen siendo compatibles.
+
+### Sector 1: Entrena al robot
+El primer reto es ahora un clasificador local de una decisión (color o forma), entrenado con etiquetas del equipo. Los primeros cuatro ejemplos correlacionan ambos atributos; el desempate favorece color y produce errores en piezas nuevas. Se amplía el conjunto con otras combinaciones, se reentrena y se evalúa. Al acertar las cuatro pruebas con el conjunto ampliado, entrega SEMILLA y la pregunta de aprendizaje. No es el mismo modelo que el chat. Las etiquetas se guardan localmente y se borran al reiniciar la misión.
