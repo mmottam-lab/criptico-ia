@@ -47,7 +47,10 @@ export function iniciar(equipo: string): Progreso {
 export function reiniciar() {
   try {
     localStorage.removeItem(KEY);
-    for (let i = 1; i <= 5; i++) localStorage.removeItem(`${KEY}:chat:${i}`);
+    for (let i = 1; i <= TOTAL_NIVELES; i++) {
+      localStorage.removeItem(`${KEY}:chat:${i}`);
+      localStorage.removeItem(`${KEY}:notas:${i}`);
+    }
   } catch {}
 }
 

@@ -345,3 +345,31 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 }
 
 .home-status, .home-footer { width: 100%; }
+
+/* Mesa de trabajo: referencias manipulables y notas junto al chat. */
+.reto-workspace { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.mesa-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.mesa-heading .eyebrow { font-size: 9px; color: var(--cyan); margin-bottom: 8px; }
+.mesa-heading > span { font: 9px var(--mono); color: var(--fg-3); white-space: nowrap; }
+.alfabeto-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+.alfabeto-heading h3 { font-size: 15px; }
+.alfabeto-heading > span, .mesa-ayuda { color: var(--fg-2); font-size: 12px; line-height: 1.6; }
+.alfabeto { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.alfabeto button { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 8px 2px; min-height: 54px; background: var(--bg); border: 1px solid var(--line); border-radius: 4px; color: var(--fg); cursor: pointer; font-family: var(--mono); }
+.alfabeto small { color: var(--fg-3); font-size: 9px; }
+.alfabeto strong { font-size: 18px; }
+.alfabeto button > span { color: var(--cyan); font-size: 12px; }
+.alfabeto button:hover { border-color: var(--cyan); }
+.alfabeto button[aria-pressed="true"] { border-color: var(--acc); background: oklch(0.91 0.18 118 / .1); }
+.desplazamiento label { display: flex; justify-content: space-between; font-size: 13px; align-items: center; }
+.desplazamiento output { font: 18px var(--mono); color: var(--acc); }
+.desplazamiento input { width: 100%; accent-color: var(--acc); margin: 14px 0; cursor: pointer; }
+.desplazamiento p { color: var(--fg-2); font-size: 12px; line-height: 1.6; }
+.letra-seleccionada { font: 12px var(--mono); color: var(--cyan); min-height: 18px; }
+.notas-equipo { border-top: 1px solid var(--line); padding-top: 20px; }
+.notas-equipo label { font-size: 15px; font-weight: 600; }
+.notas-equipo p { font-size: 12px; line-height: 1.6; color: var(--fg-2); margin: 8px 0 12px; }
+.notas-equipo textarea { display: block; width: 100%; min-height: 190px; resize: vertical; border: 1px solid var(--line); border-radius: 4px; padding: 14px; background: var(--bg); color: var(--fg); font: 14px/1.8 var(--mono); }
+.notas-equipo textarea:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+.notas-equipo textarea::placeholder { color: var(--fg-3); }
+.notas-equipo [role="status"] { color: var(--fg-3); font-size: 11px; line-height: 1.6; margin-top: 10px; }

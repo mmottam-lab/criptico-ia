@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import MapaMision from "@/components/MapaMision";
 import Descubrimiento from "@/components/Descubrimiento";
 import { APRENDIZAJES } from "@/lib/aprendizajes";
+import MesaTrabajo from "@/components/MesaTrabajo";
 import Chat from "@/components/Chat";
 import Cronometro from "@/components/Cronometro";
 import { getNivel, TOTAL_NIVELES } from "@/lib/niveles";
@@ -116,6 +117,7 @@ function ContenidoNivel({ n }: { n: number }) {
       {estado === "bien" ? <Descubrimiento nivel={n} continuar={continuarMision} /> : <>
       <div className="sector-heading"><p className="eyebrow">Exploración en curso</p><h1>{APRENDIZAJES[n-1].sector}</h1><span>01 Resuelve el reto <b>→</b> 02 Descubre la IA</span></div>
       <div className="nivel-grid">
+        <div className="reto-workspace">
         <section className="panel">
           <p className="eyebrow">Señal interceptada / {nivel.tipo}</p>
           <h2>{nivel.titulo}</h2>
@@ -163,6 +165,9 @@ function ContenidoNivel({ n }: { n: number }) {
             {error && <p role="alert">{error}</p>}
           </form>
         </section>
+
+        <MesaTrabajo nivel={n} />
+        </div>
 
         <section className="panel panel-chat">
           <Chat
