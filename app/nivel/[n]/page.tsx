@@ -109,7 +109,7 @@ function ContenidoNivel({ n }: { n: number }) {
   return (
     <main className={`nivel ${estado !== "bien" ? "mission-active" : ""}`}>
       <header className="nivel-top">
-        <a className="mission-brand" href="/">ARCHIVO <span>2036</span></a>
+        <a className="mission-brand" href="/">ARCHIVO <span>2030</span></a>
         <span className="mission-location">SECTOR 0{n} / 05</span>
         <Cronometro />
       </header>

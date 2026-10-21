@@ -1,4 +1,4 @@
-# Guia del facilitador: El Archivo 2036
+# Guia del facilitador: El Archivo 2030
 
 Material solo para quien conduce la actividad. Contiene todas las respuestas.
 
@@ -6,7 +6,7 @@ Material solo para quien conduce la actividad. Contiene todas las respuestas.
 
 | Minuto | Que pasa |
 |---|---|
-| 0 a 5 | Intro. Narrativa: "Interceptamos un mensaje sellado en 2036 por la primera generacion de la licenciatura. Cinco capas. Nadie lo resuelve a mano. Tienen una IA y el reloj corre." Equipos de 3 o 4, un dispositivo por equipo, abren el sitio y registran su nombre. |
+| 0 a 5 | Intro. Narrativa: "Interceptamos un mensaje sellado en 2030 por la primera generacion de la licenciatura. Cinco capas. Nadie lo resuelve a mano. Tienen una IA y el reloj corre." Equipos de 3 o 4, un dispositivo por equipo, abren el sitio y registran su nombre. |
 | 5 a 45 | Juego. Caminar entre equipos. Si un equipo lleva mas de 10 minutos en una capa, sugerirles la pista. |
 | 45 a 55 | Debrief (ver abajo). |
 | 55 a 60 | Cierre y mensaje de la licenciatura. |

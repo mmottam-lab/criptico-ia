@@ -1,6 +1,6 @@
 export default function ArchivoScene({ completados = 0, compacto = false }: { completados?: number; compacto?: boolean }) {
   return <div className={`archivo-scene ${compacto ? 'compacto' : ''}`}>
-    <div className="scene-coordinates" aria-hidden="true"><span>ARCHIVO / 2036</span><span>SEÑAL RECUPERADA</span></div>
+    <div className="scene-coordinates" aria-hidden="true"><span>ARCHIVO / 2030</span><span>SEÑAL RECUPERADA</span></div>
     <svg viewBox="0 0 560 430" role="img" aria-label={`Núcleo del archivo: ${completados} de 5 sectores recuperados`}>
       <g className="scene-grid" fill="none" stroke="currentColor">
         {[70,130,190,250,310,370].map(y => <path key={y} d={`M20 ${y} H540`} />)}

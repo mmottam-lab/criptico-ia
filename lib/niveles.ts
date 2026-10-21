@@ -22,7 +22,7 @@ export const NIVELES: Nivel[] = [
     intro:
       "La primera capa del archivo usa un cifrado clásico. Cada letra fue movida un numero fijo de posiciones en el alfabeto. Propongan un desplazamiento y pidan a la IA una pista para comprobarlo. Ustedes encuentran la palabra que abre la siguiente capa.",
     texto:
-      "HYJOPCV HIPLYAV. LZAL TLUZHQL MBL ZLSSHKV LU KVZ TPS AYLPUAH F ZLPZ WVY SH WYPTLYH NLULYHJPVU. JHKH JHWH WYVALNL H SH ZPNBPLUAL. WHYH HIYPY SH ZLNBUKH JHWH LZJYPIHU SH WHSHIYH ZLTPSSH.",
+      "HYJOPCV HIPLYAV. LZAL TLUZHQL MBL ZLSSHKV LU KVZ TPS AYLPUAH WVY SH WYPTLYH NLULYHJPVU. JHKH JHWH WYVALNL H SH ZPNBPLUAL. WHYH HIYPY SH ZLNBUKH JHWH LZJYPIHU SH WHSHIYH ZLTPSSH.",
     pista: "Dile a la IA que tipo de cifrado es y en que idioma esta el mensaje. Si no sabe el desplazamiento, pidele que pruebe los 25 posibles.",
     habilidad: "Pedir con claridad",
     placeholder: "Comparte el mensaje y el primer intento de tu equipo...",

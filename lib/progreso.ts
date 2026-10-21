@@ -11,6 +11,7 @@ export type Progreso = {
   pistas: number[]; // niveles donde se uso pista
 };
 
+// Conserva la clave histórica para mantener las partidas y notas guardadas.
 const KEY = "archivo2036";
 
 export function leerProgreso(): Progreso | null {

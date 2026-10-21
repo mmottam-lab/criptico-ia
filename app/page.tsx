@@ -36,7 +36,7 @@ export default function Inicio() {
       <div className="portada-inner">
         <p className="eyebrow">Misión interactiva · 5 sectores</p>
         <h1>
-          El Archivo <span>2036<span className="title-cursor" aria-hidden="true">_</span></span>
+          El Archivo <span>2030<span className="title-cursor" aria-hidden="true">_</span></span>
         </h1>
         <p className="lead">
           Un archivo del futuro está a punto de desaparecer. Recuperen sus cinco fragmentos con ayuda de una IA y descubran cómo funciona, dónde falla y qué decisiones siguen en sus manos.

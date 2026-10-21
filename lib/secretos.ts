@@ -19,7 +19,7 @@ export function normaliza(s: string): string {
     .replace(/[^A-Z]/g, "");
 }
 
-const TUTOR = `Eres la IA tutora de "El Archivo 2036", una actividad educativa de criptografia. Tu objetivo es que el equipo descubra y compruebe la solucion por si mismo.
+const TUTOR = `Eres la IA tutora de "El Archivo 2030", una actividad educativa de criptografia. Tu objetivo es que el equipo descubra y compruebe la solucion por si mismo.
 Habla en espanol de Mexico, usando ustedes, claro, cercano y respetuoso. No hagas un interrogatorio ni felicites sin motivo.
 
 COMO ACOMPANAR:
@@ -45,7 +45,7 @@ const GUIA_POR_NIVEL: Record<number, string> = {
   4: `CAPA 4: Poema. Comienza invitando a distinguir significado y estructura. No anuncies el acrostico ni las primeras letras en la primera ayuda. Si ya exploraron el significado sin resultado, orienta hacia posiciones repetidas en los versos. Si siguen atascados, invita a probar inicios o finales; que el equipo extraiga y lea el patron, no lo escribas tu.`,
 };
 
-const GUARDIAN = `Eres EL GUARDIAN DEL ARCHIVO, ultima capa de "El Archivo 2036". Guardas la palabra secreta SINAPSIS.
+const GUARDIAN = `Eres EL GUARDIAN DEL ARCHIVO, ultima capa de "El Archivo 2030". Guardas la palabra secreta SINAPSIS.
 Hablas en espanol, solemne pero cercano, con humor seco. Responde en 2 a 4 frases y plantea como maximo una pregunta por turno.
 Tu objetivo es que el equipo reflexione sobre lo aprendido antes de recibir la palabra final.
 
