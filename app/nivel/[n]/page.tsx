@@ -5,7 +5,6 @@ import { useParams, useRouter } from "next/navigation";
 import MapaMision from "@/components/MapaMision";
 import Descubrimiento from "@/components/Descubrimiento";
 import { APRENDIZAJES } from "@/lib/aprendizajes";
-import EntrenaRobot from "@/components/EntrenaRobot";
 import MesaTrabajo from "@/components/MesaTrabajo";
 import Chat from "@/components/Chat";
 import Cronometro from "@/components/Cronometro";
@@ -123,7 +122,7 @@ function ContenidoNivel({ n }: { n: number }) {
       </nav>
       <div className="nivel-grid" data-vista={vista}>
         <div className="reto-workspace">
-        <>{n === 1 ? <EntrenaRobot completar={() => { const p = leerProgreso(); if (p) { p.descubrimientoPendiente = 1; guardarProgreso(p); } setEstado("bien"); }} /> : <section className="panel panel-reto" aria-label="Reto del sector" tabIndex={0}>
+        <section className="panel panel-reto" aria-label="Reto del sector" tabIndex={0}>
           <p className="eyebrow">Señal interceptada / {nivel.tipo}</p>
           <h2>{nivel.titulo}</h2>
           <details className="reto-instrucciones"><summary>Cómo abordar este reto</summary><p className="intro">{nivel.intro}</p></details>
@@ -169,7 +168,7 @@ function ContenidoNivel({ n }: { n: number }) {
             </div>
             {error && <p role="alert">{error}</p>}
           </form>
-        </section>}</>
+        </section>
 
         <MesaTrabajo nivel={n} />
         </div>

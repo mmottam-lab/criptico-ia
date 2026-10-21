@@ -12,18 +12,18 @@ export type Aprendizaje = {
 
 export const APRENDIZAJES: Aprendizaje[] = [
   {
-    sector: 'El laboratorio', titulo: 'Aprender de ejemplos no es entenderlo todo',
-    concepto: 'Un clasificador aprende una regla a partir de ejemplos etiquetados. Si los datos mezclan una característica útil con otra accidental, puede aprender una relación que falla fuera del entrenamiento. Por eso se evalúa con ejemplos distintos de los usados para entrenar.',
-    conexion: 'Al principio, color y forma permitían separar los ejemplos. Este robot eligió color al empatar. Añadir otras combinaciones ayudó a distinguir la regla que querían enseñar. Es un clasificador de una sola decisión, mucho más simple que un chatbot.',
-    practica: 'Prueba casos variados, revisa las etiquetas y separa los ejemplos de entrenamiento de los de evaluación. Fragmento recuperado: SEMILLA.',
-    pregunta: 'El robot acierta sus ejemplos de entrenamiento, pero falla con piezas nuevas. ¿Qué conviene hacer?',
-    opciones: ['Repetir los mismos ejemplos sin revisar nada.', 'Revisar errores y etiquetas, añadir variedad y volver a evaluar.', 'Cambiar el nombre del robot.'], correcta: 1,
-    explicaciones: ['Repetir los mismos ejemplos no aporta las diferencias que faltan.', 'Exacto. Acertar ejemplos conocidos no garantiza generalizar a otros nuevos.', 'El nombre no cambia los patrones aprendidos.'],
+    sector: 'La señal', titulo: 'Una IA no es magia',
+    concepto: 'La inteligencia artificial reúne sistemas que realizan tareas como reconocer patrones, generar texto o hacer predicciones. Muchos modelos aprenden patrones a partir de ejemplos durante su entrenamiento. Un chatbot genera texto a partir de esos patrones y del contexto que recibe; no es una persona ni una garantía de verdad.',
+    conexion: 'El cifrado César sigue una regla exacta. El chatbot puede ayudarte a descubrirla, pero una explicación convincente todavía necesita una comprobación. Resolver un cifrado y entrenar una IA son cosas distintas.',
+    practica: 'Cuando recibas una respuesta, pregunta: ¿qué pequeña prueba puedo hacer para comprobarla?',
+    pregunta: 'Una IA explica algo con mucha seguridad. ¿Qué significa?',
+    opciones: ['Que lo comprobó antes de escribirlo.', 'Que genera una respuesta plausible, pero hay que verificarla.', 'Que tiene experiencia personal sobre el tema.'], correcta: 1,
+    explicaciones: ['No necesariamente: generar una explicación no implica comprobarla.', 'Exacto. La fluidez de una respuesta no demuestra que sea verdadera.', 'Un chatbot no tiene experiencias personales como una persona.'],
   },
   {
     sector: 'Los patrones', titulo: 'Los ejemplos importan',
     concepto: 'Durante el entrenamiento, un modelo ajusta sus parámetros a partir de datos. Lo que aparece mucho, poco o de forma sesgada en esos datos influye en sus resultados. Reconocer patrones no equivale a comprender el mundo como una persona.',
-    conexion: 'Buscar letras repetidas te permitió proponer hipótesis. Es una comparación útil con encontrar patrones, pero en este reto de letras no estás entrenando el chatbot: estás trabajando con uno ya entrenado.',
+    conexion: 'Buscar letras repetidas te permitió proponer hipótesis. Es una comparación útil con encontrar patrones, pero en este juego no estás entrenando el modelo: estás trabajando con uno ya entrenado.',
     practica: 'Para evaluar una herramienta de IA, prueba ejemplos variados, no solo uno que le salga bien.',
     pregunta: 'Un clasificador se entrena casi solo con fotos de perros blancos. ¿Qué conviene comprobar?',
     opciones: ['Si reconoce también perros de otros colores y en situaciones distintas.', 'Nada: aprender una categoría garantiza acertar todos los casos.', 'Si responde con suficiente seguridad.'], correcta: 0,

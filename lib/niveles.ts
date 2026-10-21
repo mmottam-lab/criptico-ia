@@ -17,13 +17,15 @@ export const TOTAL_NIVELES = 5;
 export const NIVELES: Nivel[] = [
   {
     n: 1,
-    titulo: "Entrena al robot",
-    tipo: "Clasificación con ejemplos",
-    intro: "Enseñen al robot a recuperar triángulos y dejar círculos. Etiqueten ejemplos, prueben piezas nuevas y revisen qué aprendió.",
-    texto: "Un robot aprende de sus ejemplos. ¿Podrá reconocer las piezas cuando cambie el color?",
-    pista: "Comparen las formas y colores de los ejemplos con los errores de las pruebas.",
-    habilidad: "Evaluar y mejorar los datos de entrenamiento",
-    placeholder: "Cuéntale a la guía qué ejemplos usaron y dónde falló el robot…",
+    titulo: "Capa 1 / Desplazamiento",
+    tipo: "Cifrado Cesar",
+    intro:
+      "La primera capa del archivo usa un cifrado clásico. Cada letra fue movida un numero fijo de posiciones en el alfabeto. Propongan un desplazamiento y pidan a la IA una pista para comprobarlo. Ustedes encuentran la palabra que abre la siguiente capa.",
+    texto:
+      "HYJOPCV HIPLYAV. LZAL TLUZHQL MBL ZLSSHKV LU KVZ TPS AYLPUAH F ZLPZ WVY SH WYPTLYH NLULYHJPVU. JHKH JHWH WYVALNL H SH ZPNBPLUAL. WHYH HIYPY SH ZLNBUKH JHWH LZJYPIHU SH WHSHIYH ZLTPSSH.",
+    pista: "Dile a la IA que tipo de cifrado es y en que idioma esta el mensaje. Si no sabe el desplazamiento, pidele que pruebe los 25 posibles.",
+    habilidad: "Pedir con claridad",
+    placeholder: "Comparte el mensaje y el primer intento de tu equipo...",
   },
   {
     n: 2,

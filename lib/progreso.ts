@@ -47,7 +47,6 @@ export function iniciar(equipo: string): Progreso {
 export function reiniciar() {
   try {
     localStorage.removeItem(KEY);
-    localStorage.removeItem("archivo2036:robot:v1");
     for (let i = 1; i <= TOTAL_NIVELES; i++) {
       localStorage.removeItem(`${KEY}:chat:${i}`);
       localStorage.removeItem(`${KEY}:notas:${i}`);

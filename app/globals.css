@@ -436,25 +436,3 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
   .mission-active .alfabeto strong { font-size: 14px; }
   .mission-active .alfabeto button > span { font-size: 10px; }
 }
-.robot-step { font: 11px var(--mono); color: var(--cyan); }
-.robot-ejemplos { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
-.robot-ejemplo { border: 1px solid var(--line); border-radius: 6px; padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
-.robot-pieza { width: 52px; height: 40px; flex-shrink: 0; }
-.robot-pieza.verde { fill: var(--acc); }
-.robot-pieza.rosa { fill: oklch(.76 .13 350); }
-.robot-ejemplo > span { font-size: 10px; color: var(--fg-2); }
-.robot-ejemplo > div { display: flex; gap: 3px; width: 100%; }
-.robot-ejemplo button { flex: 1; padding: 8px 2px; font-size: 11px; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); cursor: pointer; }
-.robot-ejemplo button[aria-pressed="true"] { border-color: var(--acc); color: var(--acc); }
-.robot-ejemplo button:hover { border-color: var(--cyan); }
-.robot-lab > .mission-button { font-size: 13px; padding: 11px; }
-.robot-resultados { display: flex; flex-direction: column; gap: 12px; border-top: 1px solid var(--line); padding-top: 14px; }
-.robot-resultados h3 { font-size: 16px; }
-.robot-resultados p, .robot-cuaderno p { font-size: 13px; line-height: 1.6; color: var(--fg-2); }
-.robot-pruebas { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 4px; }
-.robot-pruebas > div { display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 10px; }
-.robot-pruebas strong { color: var(--cyan); }
-.robot-cuaderno { display: flex; flex-direction: column; gap: 16px; }
-.robot-cuaderno h3 { font-size: 16px; }
-.robot-cuaderno small { line-height: 1.6; color: var(--fg-3); }
-.robot-recompensa strong { color: var(--acc); }

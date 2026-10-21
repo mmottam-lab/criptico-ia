@@ -10,7 +10,7 @@ export default function Descubrimiento({ nivel, continuar }: { nivel: number; co
   const correcto = eleccion === a.correcta;
   useEffect(() => { titulo.current?.focus(); window.scrollTo({ top: 0 }); }, []);
   return <section className="discovery" aria-labelledby="discovery-title">
-    <div className="discovery-art"><ArchivoScene completados={nivel} compacto /><p className="eyebrow">Fragmento {nivel} / 5 recuperado</p><p>{nivel === 1 ? "Robot entrenado. Fragmento: SEMILLA." : "El código abrió una puerta."}<br />Ahora, conecta lo que descubriste.</p></div>
+    <div className="discovery-art"><ArchivoScene completados={nivel} compacto /><p className="eyebrow">Fragmento {nivel} / 5 recuperado</p><p>El código abrió una puerta.<br />Ahora, conecta lo que descubriste.</p></div>
     <div className="discovery-content">
       <p className="eyebrow">Descubrimiento de IA</p>
       <h1 id="discovery-title" tabIndex={-1} ref={titulo}>{a.titulo}</h1>
