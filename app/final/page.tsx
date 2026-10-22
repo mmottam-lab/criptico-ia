@@ -53,6 +53,20 @@ export default function Final() {
           </div>
         </div>
 
+        <section className="registro-centro" aria-labelledby="registro-titulo">
+          <div>
+            <p className="eyebrow">Tu siguiente paso</p>
+            <h2 id="registro-titulo">Sigue explorando la inteligencia artificial</h2>
+            <p>Regístrate para recibir más información sobre la Licenciatura en Inteligencia Artificial de CENTRO.</p>
+            <a className="mission-button" href="https://procesodeadmision.centro.edu.mx/DiaCentro" target="_blank" rel="noopener noreferrer">Quiero más información <span aria-hidden="true">↗</span></a>
+            <small>El registro se abre en una nueva pestaña.</small>
+          </div>
+          <figure>
+            <img src="/qr-dia-centro.png" width="228" height="228" alt="Código QR para abrir el registro de Día CENTRO. También puedes usar el botón Quiero más información." />
+            <figcaption>Escanea para registrarte</figcaption>
+          </figure>
+        </section>
+
         <section className="field-notebook"><h2>Tu bitácora de IA</h2><p>Cinco ideas para llevar fuera del juego.</p>{APRENDIZAJES.map((a,i) => <details key={a.titulo}><summary><span>0{i+1}</span> {a.titulo}</summary><p>{a.concepto}</p><p className="transmission-task">{a.practica}</p></details>)}</section>
         <p className="muted">Tomen captura de esta pantalla y muestrenla para registrar su tiempo.</p>
 

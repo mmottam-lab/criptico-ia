@@ -428,3 +428,16 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
   .mission-active .alfabeto strong { font-size: 14px; }
   .mission-active .alfabeto button > span { font-size: 10px; }
 }
+
+.registro-centro { display: grid; grid-template-columns: minmax(0, 1fr) 228px; gap: 28px; align-items: center; padding: 28px 0; border-block: 1px solid var(--line); }
+.registro-centro h2 { font-size: 26px; line-height: 1.2; letter-spacing: -.03em; margin: 10px 0 14px; }
+.registro-centro p:not(.eyebrow) { font-size: 15px; line-height: 1.65; color: var(--fg-2); }
+.registro-centro .mission-button { margin-top: 20px; text-decoration: none; font-size: 14px; }
+.registro-centro small { display: block; margin-top: 10px; color: var(--fg-3); font-size: 11px; }
+.registro-centro figure { margin: 0; text-align: center; }
+.registro-centro img { display: block; width: 228px; max-width: 100%; height: auto; }
+.registro-centro figcaption { margin-top: 10px; color: var(--fg-2); font: 11px var(--mono); }
+@media (max-width: 600px) {
+  .registro-centro { grid-template-columns: 1fr; gap: 24px; }
+  .registro-centro figure { justify-self: center; }
+}
